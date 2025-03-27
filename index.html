@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portail Algérie</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
 </head>
-<body class="bg-white text-gray-800 font-sans">
-
+<body class="bg-white text-gray-800">
   <!-- Header -->
-  <header class="bg-green-700 text-white p-4 flex justify-between items-center">
+  <header class="bg-green-700 text-white p-4 flex justify-between items-center shadow">
     <h1 class="text-2xl font-bold">Portail Algérie</h1>
     <div class="flex gap-2">
       <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
@@ -18,50 +22,76 @@
     </div>
   </header>
 
-  <!-- Main -->
+  <!-- Section à la une -->
+  <section class="bg-gray-100 py-8 px-6 text-center">
+    <h2 class="text-3xl font-bold mb-4">À la Une</h2>
+    <div class="max-w-4xl mx-auto">
+      <img src="https://source.unsplash.com/featured/?algeria,news" alt="À la une" class="rounded-lg mb-4 w-full h-64 object-cover">
+      <p class="text-lg text-gray-700">Suivez l'actualité politique, économique, sociale et culturelle de l'Algérie en temps réel. Notre équipe sélectionne les infos les plus pertinentes pour vous tenir informé avec rigueur et clarté.</p>
+    </div>
+  </section>
+
+  <!-- Grille principale -->
   <main class="p-6 grid gap-6">
-
     <div class="grid md:grid-cols-3 gap-4">
-      <section class="border p-4 rounded shadow">
+      <section class="border p-4 rounded shadow hover:shadow-md">
         <h2 class="text-xl font-semibold mb-2">Actualités</h2>
-        <ul class="list-disc ml-5 text-sm">
-          <li>Journaux</li>
-          <li>TV en direct</li>
-          <li>Radio</li>
-          <li>Réseaux sociaux influents</li>
+        <ul class="list-disc ml-5 text-sm text-gray-700">
+          <li><a href="#" class="hover:underline">Journaux</a></li>
+          <li><a href="#" class="hover:underline">TV en direct</a></li>
+          <li><a href="#" class="hover:underline">Radio</a></li>
+          <li><a href="#" class="hover:underline">Réseaux sociaux influents</a></li>
         </ul>
       </section>
 
-      <section class="border p-4 rounded shadow">
+      <section class="border p-4 rounded shadow hover:shadow-md">
         <h2 class="text-xl font-semibold mb-2">Opportunités</h2>
-        <ul class="list-disc ml-5 text-sm">
-          <li>Études à l'étranger</li>
-          <li>Emploi international</li>
-          <li>Immigration</li>
-          <li>Guides pratiques</li>
+        <ul class="list-disc ml-5 text-sm text-gray-700">
+          <li><a href="#" class="hover:underline">Études à l'étranger</a></li>
+          <li><a href="#" class="hover:underline">Emploi international</a></li>
+          <li><a href="#" class="hover:underline">Immigration</a></li>
+          <li><a href="#" class="hover:underline">Guides pratiques</a></li>
         </ul>
       </section>
 
-      <section class="border p-4 rounded shadow">
+      <section class="border p-4 rounded shadow hover:shadow-md">
         <h2 class="text-xl font-semibold mb-2">Annonces</h2>
-        <ul class="list-disc ml-5 text-sm">
-          <li>Immobilier</li>
-          <li>Emploi local</li>
-          <li>Vente/Achat</li>
-          <li>Services</li>
+        <ul class="list-disc ml-5 text-sm text-gray-700">
+          <li><a href="#" class="hover:underline">Immobilier</a></li>
+          <li><a href="#" class="hover:underline">Emploi local</a></li>
+          <li><a href="#" class="hover:underline">Vente/Achat</a></li>
+          <li><a href="#" class="hover:underline">Services</a></li>
         </ul>
       </section>
     </div>
 
     <div class="grid md:grid-cols-2 gap-4">
-      <section class="border p-4 rounded shadow">
+      <section class="border p-4 rounded shadow hover:shadow-md">
         <h2 class="text-xl font-semibold mb-2">Culture & Lifestyle</h2>
-        <ul class="list-disc ml-5 text-sm">
-          <li>Cuisine</li>
-          <li>Traditions</li>
-          <li>Art & Musique</li>
-          <li>Événements</li>
+        <ul class="list-disc ml-5 text-sm text-gray-700">
+          <li><a href="#" class="hover:underline">Cuisine</a></li>
+          <li><a href="#" class="hover:underline">Traditions</a></li>
+          <li><a href="#" class="hover:underline">Art & Musique</a></li>
+          <li><a href="#" class="hover:underline">Événements</a></li>
         </ul>
       </section>
 
-      <section class="border p-4 rounded
+      <section class="border p-4 rounded shadow hover:shadow-md">
+        <h2 class="text-xl font-semibold mb-2">Recherche & Newsletter</h2>
+        <input type="text" placeholder="Rechercher une info..." class="border w-full px-2 py-1 mb-2 rounded" />
+        <input type="email" placeholder="Votre adresse email..." class="border w-full px-2 py-1 mb-2 rounded" />
+        <button class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">S'abonner</button>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600">
+    &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
