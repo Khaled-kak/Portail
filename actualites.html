@@ -61,6 +61,55 @@
       <p class="text-sm text-gray-700">Un débat s'ouvre autour d'une refonte des institutions dans le but d'apporter plus de transparence et de participation...</p>
       <a href="#" class="text-green-700 text-sm mt-2 inline-block">Lire plus</a>
     </div>
+    <section class="px-6 py-8 max-w-6xl mx-auto">
+  <h2 class="text-3xl font-bold mb-6">Actualités en direct</h2>
+  <div id="news-container" class="grid gap-6 md:grid-cols-2"></div>
+</section>
+
+<script>
+  const sources = [
+    {
+      name: "TSA",
+      url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.tsa-algerie.com/feed/"
+    },
+    {
+      name: "El Watan",
+      url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.elwatan.dz/feed"
+    },
+    {
+      name: "Echorouk",
+      url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.echoroukonline.com/feed"
+    }
+  ];
+
+  const container = document.getElementById("news-container");
+
+  sources.forEach(source => {
+    fetch(source.url)
+      .then(response => response.json())
+      .then(data => {
+        if (data.items) {
+          const articles = data.items.slice(0, 3); // afficher 3 actus par source
+          articles.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "bg-white border rounded p-4 shadow hover:shadow-md transition";
+            card.innerHTML = `
+              <h3 class="text-lg font-semibold mb-1">
+                <a href="${item.link}" target="_blank" class="text-green-700 hover:underline">${item.title}</a>
+              </h3>
+              <p class="text-sm text-gray-500 mb-2">${new Date(item.pubDate).toLocaleDateString("fr-FR")} — ${source.name}</p>
+              <p class="text-sm text-gray-700">${item.description.slice(0, 120)}...</p>
+            `;
+            container.appendChild(card);
+          });
+        }
+      })
+      .catch(error => {
+        console.error(`Erreur pour ${source.name}`, error);
+      });
+  });
+</script>
+
   </main>
 
   <!-- Footer -->
