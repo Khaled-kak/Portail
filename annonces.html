@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annonces – Portail Algérie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header avec menu -->
+  <header class="bg-green-700 text-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Portail Algérie</h1>
+      <div class="flex gap-2">
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">AR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">EN</button>
+      </div>
+    </div>
+    <nav class="bg-green-800 text-white text-sm">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap gap-4">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="actualites.html" class="hover:underline">Actualités</a>
+        <a href="annonces.html" class="underline font-semibold">Annonces</a>
+        <a href="#" class="hover:underline">Culture</a>
+        <a href="#" class="hover:underline">Opportunités</a>
+        <a href="#" class="hover:underline">Sport</a>
+        <a href="#" class="hover:underline">Santé</a>
+        <a href="#" class="hover:underline">Cuisine</a>
+        <a href="#" class="hover:underline">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Titre -->
+  <section class="py-8 px-6 text-center bg-gray-50">
+    <h2 class="text-3xl font-bold mb-2">Annonces</h2>
+    <p class="text-gray-600 text-sm">Parcourez les annonces déposées par nos visiteurs : immobilier, emploi, services, objets...</p>
+  </section>
+
+  <!-- Bouton Déposer une annonce -->
+  <div class="text-center mb-4">
+    <button class="bg-green-700 text-white px-5 py-2 rounded hover:bg-green-800">
+      Déposer une annonce
+    </button>
+  </div>
+
+  <!-- Grille d’annonces -->
+  <main class="p-6 grid gap-6 max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div class="border rounded shadow p-4 hover:shadow-md transition">
+        <h3 class="text-lg font-semibold mb-1">Appartement à louer – Alger</h3>
+        <p class="text-sm text-gray-700 mb-2">F4 à El Harrach, bien situé, proche commodités. 60 000 DA/mois.</p>
+        <span class="text-xs text-gray-500">Catégorie : Immobilier</span><br />
+        <span class="text-xs text-gray-500">Publié le : 27 mars 2025</span>
+      </div>
+
+      <div class="border rounded shadow p-4 hover:shadow-md transition">
+        <h3 class="text-lg font-semibold mb-1">Offre d'emploi : Développeur Web</h3>
+        <p class="text-sm text-gray-700 mb-2">Poste à temps plein à Oran. CDI, niveau licence minimum.</p>
+        <span class="text-xs text-gray-500">Catégorie : Emploi local</span><br />
+        <span class="text-xs text-gray-500">Publié le : 26 mars 2025</span>
+      </div>
+
+      <div class="border rounded shadow p-4 hover:shadow-md transition">
+        <h3 class="text-lg font-semibold mb-1">Vente : vélo VTT état neuf</h3>
+        <p class="text-sm text-gray-700 mb-2">Peu utilisé, prix négociable. À récupérer à Constantine.</p>
+        <span class="text-xs text-gray-500">Catégorie : Vente/Achat</span><br />
+        <span class="text-xs text-gray-500">Publié le : 25 mars 2025</span>
+      </div>
+
+      <div class="border rounded shadow p-4 hover:shadow-md transition">
+        <h3 class="text-lg font-semibold mb-1">Service : Cours d’anglais à domicile</h3>
+        <p class="text-sm text-gray-700 mb-2">Niveau débutant à avancé, sur Alger-Centre. Disponibilités flexibles.</p>
+        <span class="text-xs text-gray-500">Catégorie : Services</span><br />
+        <span class="text-xs text-gray-500">Publié le : 25 mars 2025</span>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600 mt-6">
+    &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
