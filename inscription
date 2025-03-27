@@ -27,29 +27,4 @@
       authDomain: "algeria-portal.firebaseapp.com",
       projectId: "algeria-portal",
       storageBucket: "algeria-portal.firebasestorage.app",
-      messagingSenderId: "577711328640",
-      appId: "1:577711328640:web:90feffabe1441b72b70565",
-      measurementId: "G-W931PGQF35"
-    };
-    firebase.initializeApp(firebaseConfig);
-
-    const auth = firebase.auth();
-
-    document.getElementById('signup-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const messageEl = document.getElementById('message');
-
-      try {
-        await auth.createUserWithEmailAndPassword(email, password);
-        messageEl.textContent = "✅ Compte créé avec succès ! Vous pouvez maintenant vous connecter.";
-        messageEl.classList.add("text-green-700");
-      } catch (error) {
-        messageEl.textContent = "❌ " + error.message;
-        messageEl.classList.add("text-red-700");
-      }
-    });
-  </script>
-</body>
-</html>
+      messagingSender
