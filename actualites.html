@@ -10,34 +10,56 @@
 </head>
 <body class="bg-white text-gray-800">
 
-  <!-- Header -->
-  <header class="bg-green-700 text-white p-4 flex justify-between items-center shadow">
-    <h1 class="text-2xl font-bold">Portail Algérie</h1>
-    <a href="index.html" class="hover:underline">← Retour à l'accueil</a>
+  <!-- Header complet avec navigation -->
+  <header class="bg-green-700 text-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Portail Algérie</h1>
+      <div class="flex gap-2">
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">AR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">EN</button>
+      </div>
+    </div>
+    <nav class="bg-green-800 text-white text-sm">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap gap-4">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="actualites.html" class="underline font-semibold">Actualités</a>
+        <a href="annonces.html" class="hover:underline">Annonces</a>
+        <a href="culture.html" class="hover:underline">Culture</a>
+        <a href="opportunites.html" class="hover:underline">Opportunités</a>
+        <a href="sport.html" class="hover:underline">Sport</a>
+        <a href="sante.html" class="hover:underline">Santé</a>
+        <a href="cuisine.html" class="hover:underline">Cuisine</a>
+        <a href="mariage.html" class="hover:underline">Mariage</a>
+        <a href="islam.html" class="hover:underline">Islam & Foi</a>
+        <a href="diaspora.html" class="hover:underline">Diaspora</a>
+        <a href="epicerie.html" class="hover:underline">Épicerie</a>
+        <a href="entreprendre.html" class="hover:underline">Entreprendre</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+      </div>
+    </nav>
   </header>
 
-  <!-- Page Title -->
+  <!-- Titre de la page -->
   <section class="py-8 px-6 text-center bg-gray-50">
     <h2 class="text-3xl font-bold mb-2">Actualités</h2>
     <p class="text-gray-600 text-sm">Derniers titres de la presse algérienne, télévision, réseaux sociaux et plus.</p>
   </section>
 
-  <!-- Articles -->
-  <main class="p-6 grid gap-6 max-w-5xl mx-auto">
-    <div class="grid md:grid-cols-2 gap-6">
-      <article class="border rounded shadow p-4 hover:shadow-md transition">
-        <img src="https://source.unsplash.com/featured/?algeria,news" class="mb-3 rounded w-full h-48 object-cover" alt="actualité 1">
-        <h3 class="text-xl font-semibold mb-1">Crise économique : l’Algérie face aux défis de 2025</h3>
-        <p class="text-sm text-gray-700 mb-2">Les experts tirent la sonnette d’alarme sur les déséquilibres budgétaires et les enjeux géostratégiques régionaux...</p>
-        <a href="#" class="text-green-700 hover:underline text-sm">Lire plus</a>
-      </article>
+  <!-- Contenu exemple -->
+  <main class="p-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
+    <div class="border rounded p-4 shadow">
+      <img src="https://source.unsplash.com/featured/?news,algeria" alt="actualité 1" class="rounded w-full h-40 object-cover mb-3">
+      <h3 class="text-lg font-semibold">Crise économique : l’Algérie face aux défis de 2025</h3>
+      <p class="text-sm text-gray-700">Les experts tirent la sonnette d’alarme sur les déséquilibres budgétaires et les enjeux géostratégiques régionaux…</p>
+      <a href="#" class="text-green-700 text-sm mt-2 inline-block">Lire plus</a>
+    </div>
 
-      <article class="border rounded shadow p-4 hover:shadow-md transition">
-        <img src="https://source.unsplash.com/featured/?algeria,politics" class="mb-3 rounded w-full h-48 object-cover" alt="actualité 2">
-        <h3 class="text-xl font-semibold mb-1">Réformes politiques : vers une nouvelle Constitution ?</h3>
-        <p class="text-sm text-gray-700 mb-2">Un débat s'ouvre autour d'une refonte des institutions dans le but d'apporter plus de transparence et de participation...</p>
-        <a href="#" class="text-green-700 hover:underline text-sm">Lire plus</a>
-      </article>
+    <div class="border rounded p-4 shadow">
+      <img src="https://source.unsplash.com/featured/?politics,algeria" alt="actualité 2" class="rounded w-full h-40 object-cover mb-3">
+      <h3 class="text-lg font-semibold">Réformes politiques : vers une nouvelle Constitution ?</h3>
+      <p class="text-sm text-gray-700">Un débat s'ouvre autour d'une refonte des institutions dans le but d'apporter plus de transparence et de participation...</p>
+      <a href="#" class="text-green-700 text-sm mt-2 inline-block">Lire plus</a>
     </div>
   </main>
 
