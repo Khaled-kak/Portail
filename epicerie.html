@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Épicerie – Portail Algérie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header avec menu -->
+  <header class="bg-green-700 text-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Portail Algérie</h1>
+      <div class="flex gap-2">
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">AR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">EN</button>
+      </div>
+    </div>
+    <nav class="bg-green-800 text-white text-sm">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap gap-4">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="epicerie.html" class="underline font-semibold">Épicerie</a>
+        <a href="actualites.html" class="hover:underline">Actualités</a>
+        <a href="annonces.html" class="hover:underline">Annonces</a>
+        <a href="culture.html" class="hover:underline">Culture</a>
+        <a href="opportunites.html" class="hover:underline">Opportunités</a>
+        <a href="sport.html" class="hover:underline">Sport</a>
+        <a href="sante.html" class="hover:underline">Santé</a>
+        <a href="cuisine.html" class="hover:underline">Cuisine</a>
+        <a href="mariage.html" class="hover:underline">Trouver un mari / une femme</a>
+        <a href="islam.html" class="hover:underline">Islam & Foi</a>
+        <a href="diaspora.html" class="hover:underline">Diaspora</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Titre -->
+  <section class="py-8 px-6 text-center bg-gray-50">
+    <h2 class="text-3xl font-bold mb-2">Épicerie algérienne en ligne</h2>
+    <p class="text-gray-600 text-sm">Achetez ou vendez vos produits du terroir : harissa, dattes, huile d’olive, pâtisseries, épices, et plus encore.</p>
+  </section>
+
+  <!-- Présentation -->
+  <main class="p-6 max-w-5xl mx-auto grid gap-6">
+    <div class="bg-white border p-6 rounded shadow">
+      <h3 class="text-xl font-semibold mb-3">Un espace pour les épiceries locales</h3>
+      <p class="text-gray-700 mb-2 text-sm">
+        Ce portail permettra aux épiciers et producteurs de créer un compte, de publier leurs produits et de gérer leurs commandes en toute simplicité.
+      </p>
+      <p class="text-gray-700 text-sm">
+        Chaque vendeur disposera d’un mini-espace personnalisé avec :
+      </p>
+      <ul class="list-disc ml-6 text-sm text-gray-700 mt-2">
+        <li>Fiche boutique (logo, ville, contact)</li>
+        <li>Catalogue produits avec prix et photo</li>
+        <li>Paiement en ligne sécurisé (à venir)</li>
+      </ul>
+    </div>
+
+    <div class="bg-gray-100 border p-6 rounded shadow">
+      <h3 class="text-md font-semibold mb-3">Lancement en cours</h3>
+      <p class="text-sm text-gray-600">Les inscriptions pour les vendeurs seront bientôt ouvertes.</p>
+      <form class="mt-4 max-w-sm mx-auto flex flex-col gap-2">
+        <input type="email" placeholder="Votre email pour être informé" class="border px-3 py-2 rounded" />
+        <button type="submit" class="bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800">Préinscription</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600 mt-6">
+    &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
