@@ -1,0 +1,88 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+const HomePage = () => {
+  return (
+    <div className="min-h-screen bg-white text-gray-800">
+      <header className="bg-green-700 text-white p-4 flex justify-between items-center">
+        <h1 className="text-2xl font-bold">DZinformation</h1>
+        <div className="flex gap-2">
+          <Button variant="outline" className="text-white border-white hover:bg-white hover:text-green-700">FR</Button>
+          <Button variant="outline" className="text-white border-white hover:bg-white hover:text-green-700">AR</Button>
+          <Button variant="outline" className="text-white border-white hover:bg-white hover:text-green-700">EN</Button>
+        </div>
+      </header>
+
+      <main className="p-6 grid gap-6">
+        <section className="grid md:grid-cols-3 gap-4">
+          <Card>
+            <CardContent className="p-4">
+              <h2 className="text-xl font-semibold mb-2">Actualités</h2>
+              <ul className="list-disc ml-4 text-sm">
+                <li>Journaux</li>
+                <li>TV en direct</li>
+                <li>Radio</li>
+                <li>Réseaux sociaux influents</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-4">
+              <h2 className="text-xl font-semibold mb-2">Opportunités</h2>
+              <ul className="list-disc ml-4 text-sm">
+                <li>Études à l'étranger</li>
+                <li>Emploi international</li>
+                <li>Immigration</li>
+                <li>Guides pratiques</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-4">
+              <h2 className="text-xl font-semibold mb-2">Annonces</h2>
+              <ul className="list-disc ml-4 text-sm">
+                <li>Immobilier</li>
+                <li>Emploi local</li>
+                <li>Vente/Achat</li>
+                <li>Services</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="grid md:grid-cols-2 gap-4">
+          <Card>
+            <CardContent className="p-4">
+              <h2 className="text-xl font-semibold mb-2">Culture & Lifestyle</h2>
+              <ul className="list-disc ml-4 text-sm">
+                <li>Cuisine</li>
+                <li>Traditions</li>
+                <li>Art & Musique</li>
+                <li>Événements</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardContent className="p-4">
+              <h2 className="text-xl font-semibold mb-2">Recherche & Newsletter</h2>
+              <Input placeholder="Rechercher une info..." className="mb-2" />
+              <Input placeholder="Votre adresse email..." className="mb-2" />
+              <Button>S'abonner</Button>
+            </CardContent>
+          </Card>
+        </section>
+      </main>
+
+      <footer className="bg-gray-100 text-sm text-center p-4 text-gray-600">
+        &copy; {new Date().getFullYear()} DZinformation. Tous droits réservés.
+      </footer>
+    </div>
+  );
+};
+
+export default HomePage;
