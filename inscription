@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscription – Portail Algérie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <style>body { font-family: sans-serif; }</style>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+
+  <div class="bg-white p-6 rounded shadow w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-4 text-center">Créer un compte</h2>
+    <form id="signup-form" class="flex flex-col gap-3">
+      <input type="email" id="email" placeholder="Email" required class="border px-3 py-2 rounded" />
+      <input type="password" id="password" placeholder="Mot de passe" required class="border px-3 py-2 rounded" />
+      <button type="submit" class="bg-green-700 text-white py-2 rounded hover:bg-green-800">S’inscrire</button>
+    </form>
+    <p id="message" class="text-sm mt-4 text-center text-gray-600"></p>
+  </div>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBFPIoOti25Wrf4cNfXwCv0zA_6A0igue0",
+      authDomain: "algeria-portal.firebaseapp.com",
+      projectId: "algeria-portal",
+      storageBucket: "algeria-portal.firebasestorage.app",
+      messagingSenderId: "577711328640",
+      appId: "1:577711328640:web:90feffabe1441b72b70565",
+      measurementId: "G-W931PGQF35"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const messageEl = document.getElementById('message');
+
+      try {
+        await auth.createUserWithEmailAndPassword(email, password);
+        messageEl.textContent = "✅ Compte créé avec succès ! Vous pouvez maintenant vous connecter.";
+        messageEl.classList.add("text-green-700");
+      } catch (error) {
+        messageEl.textContent = "❌ " + error.message;
+        messageEl.classList.add("text-red-700");
+      }
+    });
+  </script>
+</body>
+</html>
