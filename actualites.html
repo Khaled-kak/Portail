@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualités – Portail Algérie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header -->
+  <header class="bg-green-700 text-white p-4 flex justify-between items-center shadow">
+    <h1 class="text-2xl font-bold">Portail Algérie</h1>
+    <a href="index.html" class="hover:underline">← Retour à l'accueil</a>
+  </header>
+
+  <!-- Page Title -->
+  <section class="py-8 px-6 text-center bg-gray-50">
+    <h2 class="text-3xl font-bold mb-2">Actualités</h2>
+    <p class="text-gray-600 text-sm">Derniers titres de la presse algérienne, télévision, réseaux sociaux et plus.</p>
+  </section>
+
+  <!-- Articles -->
+  <main class="p-6 grid gap-6 max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-6">
+      <article class="border rounded shadow p-4 hover:shadow-md transition">
+        <img src="https://source.unsplash.com/featured/?algeria,news" class="mb-3 rounded w-full h-48 object-cover" alt="actualité 1">
+        <h3 class="text-xl font-semibold mb-1">Crise économique : l’Algérie face aux défis de 2025</h3>
+        <p class="text-sm text-gray-700 mb-2">Les experts tirent la sonnette d’alarme sur les déséquilibres budgétaires et les enjeux géostratégiques régionaux...</p>
+        <a href="#" class="text-green-700 hover:underline text-sm">Lire plus</a>
+      </article>
+
+      <article class="border rounded shadow p-4 hover:shadow-md transition">
+        <img src="https://source.unsplash.com/featured/?algeria,politics" class="mb-3 rounded w-full h-48 object-cover" alt="actualité 2">
+        <h3 class="text-xl font-semibold mb-1">Réformes politiques : vers une nouvelle Constitution ?</h3>
+        <p class="text-sm text-gray-700 mb-2">Un débat s'ouvre autour d'une refonte des institutions dans le but d'apporter plus de transparence et de participation...</p>
+        <a href="#" class="text-green-700 hover:underline text-sm">Lire plus</a>
+      </article>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600 mt-6">
+    &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
