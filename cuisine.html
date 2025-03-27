@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuisine – Portail Algérie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style> body { font-family: 'Inter', sans-serif; } </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- Header avec menu -->
+  <header class="bg-green-700 text-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">Portail Algérie</h1>
+      <div class="flex gap-2">
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">AR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">EN</button>
+      </div>
+    </div>
+    <nav class="bg-green-800 text-white text-sm">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap gap-4">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="actualites.html" class="hover:underline">Actualités</a>
+        <a href="annonces.html" class="hover:underline">Annonces</a>
+        <a href="#" class="hover:underline">Culture</a>
+        <a href="#" class="hover:underline">Opportunités</a>
+        <a href="#" class="hover:underline">Sport</a>
+        <a href="#" class="hover:underline">Santé</a>
+        <a href="cuisine.html" class="underline font-semibold">Cuisine</a>
+        <a href="#" class="hover:underline">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Titre -->
+  <section class="py-8 px-6 text-center bg-gray-50">
+    <h2 class="text-3xl font-bold mb-2">Cuisine algérienne</h2>
+    <p class="text-gray-600 text-sm">Un voyage culinaire à travers les spécialités traditionnelles du pays.</p>
+  </section>
+
+  <!-- Contenu plats -->
+  <main class="p-6 grid gap-6 max-w-5xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div class="border rounded shadow p-4">
+        <img src="https://source.unsplash.com/featured/?couscous" alt="Couscous" class="w-full h-48 object-cover rounded mb-3">
+        <h3 class="text-xl font-semibold mb-1">Couscous royal</h3>
+        <p class="text-sm text-gray-700">Le plat emblématique de l’Algérie, à base de semoule, légumes, pois chiches et viande.</p>
+      </div>
+
+      <div class="border rounded shadow p-4">
+        <img src="https://source.unsplash.com/featured/?chakchouka" alt="Chakchouka" class="w-full h-48 object-cover rounded mb-3">
+        <h3 class="text-xl font-semibold mb-1">Chakchouka</h3>
+        <p class="text-sm text-gray-700">Un mélange savoureux de tomates, oignons, poivrons, parfois accompagné d’œufs ou merguez.</p>
+      </div>
+
+      <div class="border rounded shadow p-4">
+        <img src="https://source.unsplash.com/featured/?mhajeb" alt="Mhadjeb" class="w-full h-48 object-cover rounded mb-3">
+        <h3 class="text-xl font-semibold mb-1">Mhadjeb</h3>
+        <p class="text-sm text-gray-700">Crêpe farcie aux légumes épicés, croustillante et très populaire dans les rues algériennes.</p>
+      </div>
+
+      <div class="border rounded shadow p-4">
+        <img src="https://source.unsplash.com/featured/?makroud" alt="Makroud" class="w-full h-48 object-cover rounded mb-3">
+        <h3 class="text-xl font-semibold mb-1">Makroud</h3>
+        <p class="text-sm text-gray-700">Pâtisserie à base de semoule fourrée de dattes, parfumée à la fleur d’oranger et au miel.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600 mt-6">
+    &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
