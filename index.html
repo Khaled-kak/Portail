@@ -98,9 +98,10 @@
 
       <section class="border p-4 rounded shadow hover:shadow-md">
         <h2 class="text-xl font-semibold mb-2">Recherche & Newsletter</h2>
-        <input type="text" placeholder="Rechercher une info..." class="border w-full px-2 py-1 mb-2 rounded" />
-        <input type="email" placeholder="Votre adresse email..." class="border w-full px-2 py-1 mb-2 rounded" />
-        <button class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">S'abonner</button>
+        <form action="https://formspree.io/f/xgvalwyp" method="POST" class="flex flex-col gap-2">
+          <input type="email" name="email" placeholder="Votre adresse email..." required class="border px-3 py-2 rounded" />
+          <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">S'abonner</button>
+        </form>
       </section>
     </div>
   </main>
