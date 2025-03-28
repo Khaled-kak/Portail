@@ -10,7 +10,6 @@
 </head>
 <body class="bg-white text-gray-800">
 
-  <!-- Header -->
   <header class="bg-green-700 text-white shadow">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold">Portail Algérie</h1>
@@ -40,92 +39,52 @@
     </nav>
   </header>
 
-  <!-- Titre -->
-  <section class="py-8 px-6 text-center bg-gray-50">
-    <h2 class="text-3xl font-bold mb-2">Actualités</h2>
-    <p class="text-gray-600 text-sm">Une sélection équilibrée de l’actualité autour de l’Algérie.</p>
-  </section>
-
-  <!-- Contenu -->
   <main class="p-6 max-w-6xl mx-auto">
-    <section class="mt-6">
-      <h2 class="text-2xl font-bold mb-4">📰 Articles récents</h2>
-      <div id="articles-divers" class="grid md:grid-cols-2 gap-6 text-sm text-gray-800">Chargement des articles...</div>
+    <section class="py-8 text-center">
+      <h2 class="text-3xl font-bold mb-2">Actualités</h2>
+      <p class="text-gray-600">Articles récents sur l'Algérie (via GNews.io)</p>
     </section>
+
+    <div id="news-container" class="grid md:grid-cols-2 gap-6 text-sm text-gray-800">Chargement en cours...</div>
   </main>
 
-  <!-- Footer -->
   <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600 mt-6">
     &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
   </footer>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-    const container = document.getElementById("articles-divers");
-    const API_KEY = "pub_761284b4453e321120b9f74f9ab6932636d0e";
-    const maxArticles = 30;
-    const maxParSource = 3;
-    const sourceCounter = {};
-    const articlesTotal = [];
+    const container = document.getElementById("news-container");
+    const apiKey = "dee563bf7cc2ba0481029c7af0b11ec8";
 
-    async function fetchPage(page) {
-      const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&language=fr&q=algerie&page=${page}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      return data.results || [];
-    }
-
-    async function chargerArticlesEquilibres() {
+    async function fetchNews() {
       try {
-        const pages = await Promise.all([fetchPage(1), fetchPage(2), fetchPage(3)]);
-        const all = pages.flat();
+        const res = await fetch(`https://gnews.io/api/v4/search?q=algérie&lang=fr&country=dz&max=20&token=${apiKey}`);
+        const data = await res.json();
 
-        for (const article of all) {
-          const source = article.source_id || "source_inconnue";
-          if (!sourceCounter[source]) sourceCounter[source] = 0;
-
-          if (sourceCounter[source] < maxParSource && articlesTotal.length < maxArticles) {
-            sourceCounter[source]++;
-            articlesTotal.push({
-              title: article.title,
-              url: article.link,
-              source,
-              date: new Date(article.pubDate),
-              description: article.description || ""
-            });
-          }
+        if (!data.articles || data.articles.length === 0) {
+          container.innerHTML = "<p>Aucun article trouvé.</p>";
+          return;
         }
 
-        afficherArticles();
+        container.innerHTML = data.articles.map(article => `
+          <div class="bg-white border rounded shadow p-4 hover:shadow-md transition">
+            <h3 class="font-semibold text-green-700 text-base mb-1">
+              <a href="${article.url}" target="_blank" class="hover:underline">${article.title}</a>
+            </h3>
+            <span class="text-gray-500 text-xs block mb-1">${new Date(article.publishedAt).toLocaleDateString("fr-FR")} – ${article.source.name}</span>
+            <p class="text-gray-700">${article.description}</p>
+          </div>
+        `).join("");
 
-      } catch (err) {
-        console.error("Erreur lors du chargement :", err);
-        container.innerHTML = "<p class='text-red-600'>Impossible de charger les actualités pour le moment.</p>";
+      } catch (e) {
+        console.error(e);
+        container.innerHTML = "<p class='text-red-600'>Erreur lors du chargement des actualités.</p>";
       }
     }
 
-    function afficherArticles() {
-      if (articlesTotal.length === 0) {
-        container.innerHTML = "<p>Aucun article trouvé.</p>";
-        return;
-      }
-
-      articlesTotal.sort((a, b) => b.date - a.date);
-
-      container.innerHTML = articlesTotal.map(a => `
-        <div class="bg-white border rounded shadow p-4 hover:shadow-md transition">
-          <h3 class="font-semibold text-green-700 text-base mb-1">
-            <a href="${a.url}" target="_blank" class="hover:underline">${a.title}</a>
-          </h3>
-          <span class="inline-block bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded mr-2">${a.source}</span>
-          <span class="text-gray-500 text-xs">${a.date.toLocaleDateString("fr-FR")}</span>
-          <p class="text-gray-700 mt-2">${a.description.slice(0, 150)}...</p>
-        </div>
-      `).join("");
-    }
-
-    chargerArticlesEquilibres();
+    fetchNews();
   </script>
 
 </body>
