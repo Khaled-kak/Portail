@@ -43,87 +43,15 @@
   <!-- Titre -->
   <section class="py-8 px-6 text-center bg-gray-50">
     <h2 class="text-3xl font-bold mb-2">Actualités</h2>
-    <p class="text-gray-600 text-sm">Derniers titres de la presse algérienne et étrangère, mis à jour automatiquement.</p>
+    <p class="text-gray-600 text-sm">Derniers titres de la presse algérienne (via Newsdata.io)</p>
   </section>
 
+  <!-- Contenu -->
   <main class="p-6 max-w-6xl mx-auto">
-
-    <!-- Recherche + actualités -->
     <section class="mt-6">
-      <h2 class="text-2xl font-bold mb-4">📰 Articles sélectionnés</h2>
-
-      <!-- Champ de recherche -->
-      <input type="text" id="filtre" placeholder="Rechercher un mot-clé..." 
-        class="mb-6 px-4 py-2 w-full border rounded shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
-
-      <div id="actus-container" class="space-y-6 text-sm text-gray-800">Chargement en cours...</div>
+      <h2 class="text-2xl font-bold mb-4">📰 Articles récents</h2>
+      <div id="newsdata-container" class="grid md:grid-cols-2 gap-4 text-sm text-gray-800">Chargement…</div>
     </section>
-
-    <script>
-      let toutesLesActus = [];
-
-      async function chargerActus() {
-        const container = document.getElementById("actus-container");
-        const filtreInput = document.getElementById("filtre");
-
-        try {
-          const res = await fetch("https://raw.githubusercontent.com/Khaled-kak/portail-algerie-newsbot/main/actus.json");
-          const data = await res.json();
-
-          toutesLesActus = [];
-
-          if (data.presse_algerienne.length > 0) {
-            toutesLesActus.push({ titre: "🇩🇿 Presse algérienne", articles: data.presse_algerienne });
-          }
-
-          for (const [pays, articles] of Object.entries(data.presse_etrangere)) {
-            toutesLesActus.push({ titre: `🌍 Presse étrangère (${pays})`, articles });
-          }
-
-          afficherActus("");
-
-          filtreInput.addEventListener("input", e => {
-            const valeur = e.target.value.toLowerCase();
-            afficherActus(valeur);
-          });
-
-        } catch (e) {
-          container.innerHTML = "Erreur lors du chargement des actualités.";
-        }
-      }
-
-      function afficherActus(filtreTexte = "") {
-        const container = document.getElementById("actus-container");
-
-        const html = toutesLesActus.map(section => {
-          const filtrés = section.articles.filter(a =>
-            a.title.toLowerCase().includes(filtreTexte) ||
-            a.source.toLowerCase().includes(filtreTexte) ||
-            section.titre.toLowerCase().includes(filtreTexte)
-          );
-
-          if (filtrés.length === 0) return "";
-
-          return `
-            <div>
-              <h3 class="text-xl font-semibold mb-2">${section.titre}</h3>
-              <ul class="space-y-1">
-                ${filtrés.map(a => `
-                  <li class="border-b pb-2">
-                    <a href="${a.url}" class="text-green-700 font-medium hover:underline" target="_blank">${a.title}</a><br/>
-                    <span class="text-gray-500">📰 ${a.source} — ${a.date}</span>
-                  </li>`).join("")}
-              </ul>
-            </div>
-          `;
-        }).join("<hr class='my-6'/>");
-
-        container.innerHTML = html || "<p class='text-sm text-gray-500'>Aucun résultat ne correspond à votre recherche.</p>";
-      }
-
-      chargerActus();
-    </script>
-
   </main>
 
   <!-- Footer -->
@@ -133,6 +61,33 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    const newsdataContainer = document.getElementById("newsdata-container");
+
+    fetch("https://newsdata.io/api/1/news?apikey=pub_761284b4453e321120b9f74f9ab6932636d0e&country=dz&language=fr&category=top")
+      .then(res => res.json())
+      .then(data => {
+        if (!data.results || data.results.length === 0) {
+          newsdataContainer.innerHTML = "<p>Aucun article disponible pour l’instant.</p>";
+          return;
+        }
+
+        const articles = data.results.slice(0, 10);
+        newsdataContainer.innerHTML = articles.map(item => `
+          <div class="bg-white border rounded shadow p-4 hover:shadow-md transition">
+            <h3 class="font-semibold text-green-700 text-base mb-1">
+              <a href="${item.link}" target="_blank" class="hover:underline">${item.title}</a>
+            </h3>
+            <p class="text-gray-500 mb-1">${item.source_id || "Source inconnue"} – ${new Date(item.pubDate).toLocaleDateString("fr-FR")}</p>
+            <p class="text-gray-700">${item.description?.slice(0, 150) || ""}...</p>
+          </div>
+        `).join("");
+      })
+      .catch(err => {
+        console.error("Erreur chargement Newsdata:", err);
+        newsdataContainer.innerHTML = "<p class='text-red-600'>Impossible de récupérer les données d’actualités.</p>";
+      });
   </script>
+
 </body>
 </html>
