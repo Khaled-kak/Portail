@@ -46,69 +46,103 @@
     <p class="text-gray-600 text-sm">Derniers titres de la presse algérienne, télévision, réseaux sociaux et plus.</p>
   </section>
 
-  <!-- Contenu exemple -->
-  <main class="p-6 max-w-6xl mx-auto grid md:grid-cols-2 gap-6">
-    <div class="border rounded p-4 shadow">
-      <img src="https://source.unsplash.com/featured/?news,algeria" alt="actualité 1" class="rounded w-full h-40 object-cover mb-3">
-      <h3 class="text-lg font-semibold">Crise économique : l’Algérie face aux défis de 2025</h3>
-      <p class="text-sm text-gray-700">Les experts tirent la sonnette d’alarme sur les déséquilibres budgétaires et les enjeux géostratégiques régionaux…</p>
-      <a href="#" class="text-green-700 text-sm mt-2 inline-block">Lire plus</a>
-    </div>
+  <main class="p-6 max-w-6xl mx-auto">
 
-    <div class="border rounded p-4 shadow">
-      <img src="https://source.unsplash.com/featured/?politics,algeria" alt="actualité 2" class="rounded w-full h-40 object-cover mb-3">
-      <h3 class="text-lg font-semibold">Réformes politiques : vers une nouvelle Constitution ?</h3>
-      <p class="text-sm text-gray-700">Un débat s'ouvre autour d'une refonte des institutions dans le but d'apporter plus de transparence et de participation...</p>
-      <a href="#" class="text-green-700 text-sm mt-2 inline-block">Lire plus</a>
-    </div>
-    <section class="px-6 py-8 max-w-6xl mx-auto">
-  <h2 class="text-3xl font-bold mb-6">Actualités en direct</h2>
-  <div id="news-container" class="grid gap-6 md:grid-cols-2"></div>
-</section>
+    <!-- Actus depuis les flux RSS -->
+    <section class="mb-10">
+      <h2 class="text-2xl font-bold mb-4">🗞️ Articles récents (TSA, El Watan, Echorouk)</h2>
+      <div id="news-container" class="grid gap-6 md:grid-cols-2"></div>
+    </section>
 
-<script>
-  const sources = [
-    {
-      name: "TSA",
-      url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.tsa-algerie.com/feed/"
-    },
-    {
-      name: "El Watan",
-      url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.elwatan.dz/feed"
-    },
-    {
-      name: "Echorouk",
-      url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.echoroukonline.com/feed"
-    }
-  ];
-
-  const container = document.getElementById("news-container");
-
-  sources.forEach(source => {
-    fetch(source.url)
-      .then(response => response.json())
-      .then(data => {
-        if (data.items) {
-          const articles = data.items.slice(0, 3); // afficher 3 actus par source
-          articles.forEach(item => {
-            const card = document.createElement("div");
-            card.className = "bg-white border rounded p-4 shadow hover:shadow-md transition";
-            card.innerHTML = `
-              <h3 class="text-lg font-semibold mb-1">
-                <a href="${item.link}" target="_blank" class="text-green-700 hover:underline">${item.title}</a>
-              </h3>
-              <p class="text-sm text-gray-500 mb-2">${new Date(item.pubDate).toLocaleDateString("fr-FR")} — ${source.name}</p>
-              <p class="text-sm text-gray-700">${item.description.slice(0, 120)}...</p>
-            `;
-            container.appendChild(card);
-          });
+    <script>
+      const sources = [
+        {
+          name: "TSA",
+          url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.tsa-algerie.com/feed/"
+        },
+        {
+          name: "El Watan",
+          url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.elwatan.dz/feed"
+        },
+        {
+          name: "Echorouk",
+          url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.echoroukonline.com/feed"
         }
-      })
-      .catch(error => {
-        console.error(`Erreur pour ${source.name}`, error);
+      ];
+
+      const container = document.getElementById("news-container");
+
+      sources.forEach(source => {
+        fetch(source.url)
+          .then(response => response.json())
+          .then(data => {
+            if (data.items) {
+              const articles = data.items.slice(0, 3);
+              articles.forEach(item => {
+                const card = document.createElement("div");
+                card.className = "bg-white border rounded p-4 shadow hover:shadow-md transition";
+                card.innerHTML = `
+                  <h3 class="text-lg font-semibold mb-1">
+                    <a href="${item.link}" target="_blank" class="text-green-700 hover:underline">${item.title}</a>
+                  </h3>
+                  <p class="text-sm text-gray-500 mb-2">${new Date(item.pubDate).toLocaleDateString("fr-FR")} — ${source.name}</p>
+                  <p class="text-sm text-gray-700">${item.description.slice(0, 120)}...</p>
+                `;
+                container.appendChild(card);
+              });
+            }
+          })
+          .catch(error => {
+            console.error(`Erreur pour ${source.name}`, error);
+          });
       });
-  });
-</script>
+    </script>
+
+    <!-- Actus via actus.json (NewsData.io via GitHub) -->
+    <section class="mt-12">
+      <h2 class="text-2xl font-bold mb-4">📰 Actualités sélectionnées (NewsData.io)</h2>
+      <div id="actus-container" class="space-y-6 text-sm text-gray-800">Chargement en cours...</div>
+    </section>
+
+    <script>
+      async function chargerActus() {
+        const container = document.getElementById("actus-container");
+        try {
+          const res = await fetch("https://raw.githubusercontent.com/Khaled-kak/portail-algerie-newsbot/main/actus.json");
+          const data = await res.json();
+
+          const section = (titre, articles) => `
+            <div>
+              <h3 class="text-xl font-semibold mb-2">${titre}</h3>
+              <ul class="space-y-1">
+                ${articles.map(a => `
+                  <li class="border-b pb-2">
+                    <a href="${a.url}" class="text-green-700 font-medium hover:underline" target="_blank">${a.title}</a><br/>
+                    <span class="text-gray-500">📰 ${a.source} — ${a.date}</span>
+                  </li>`).join("")}
+              </ul>
+            </div>
+          `;
+
+          const html = [];
+
+          if (data.presse_algerienne.length > 0) {
+            html.push(section("🇩🇿 Presse algérienne", data.presse_algerienne));
+          }
+
+          for (const [pays, articles] of Object.entries(data.presse_etrangere)) {
+            html.push(section(`🌍 Presse étrangère (${pays})`, articles));
+          }
+
+          container.innerHTML = html.join("<hr class='my-6'/>");
+
+        } catch (e) {
+          container.innerHTML = "Erreur lors du chargement des actualités.";
+        }
+      }
+
+      chargerActus();
+    </script>
 
   </main>
 
@@ -120,6 +154,5 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-
 </body>
 </html>
