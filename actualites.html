@@ -10,7 +10,7 @@
 </head>
 <body class="bg-white text-gray-800">
 
-  <!-- Header avec navigation -->
+  <!-- Header -->
   <header class="bg-green-700 text-white shadow">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold">Portail Algérie</h1>
@@ -43,88 +43,15 @@
   <!-- Titre -->
   <section class="py-8 px-6 text-center bg-gray-50">
     <h2 class="text-3xl font-bold mb-2">Actualités</h2>
-    <p class="text-gray-600 text-sm">Derniers titres de la presse algérienne (via Newsdata.io)</p>
+    <p class="text-gray-600 text-sm">Une sélection équilibrée de l’actualité algérienne.</p>
   </section>
 
   <!-- Contenu -->
   <main class="p-6 max-w-6xl mx-auto">
     <section class="mt-6">
       <h2 class="text-2xl font-bold mb-4">📰 Articles récents</h2>
-      <div id="newsdata-container" class="grid md:grid-cols-2 gap-4 text-sm text-gray-800">Chargement…</div>
+      <div id="articles-divers" class="grid md:grid-cols-2 gap-6 text-sm text-gray-800">Chargement des articles...</div>
     </section>
-    <section class="mt-6">
-  <h2 class="text-2xl font-bold mb-4">📰 Articles équilibrés</h2>
-  <div id="articles-divers" class="grid md:grid-cols-2 gap-6 text-sm text-gray-800">Chargement des articles...</div>
-</section>
-
-<script>
-  const container = document.getElementById("articles-divers");
-  const API_KEY = "pub_761284b4453e321120b9f74f9ab6932636d0e";
-  const maxArticles = 30;
-  const maxParSource = 3;
-  const sourceCounter = {};
-  const articlesTotal = [];
-
-  async function fetchPage(page) {
-    const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&country=dz&language=fr&category=top&page=${page}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    return data.results || [];
-  }
-
-  async function chargerArticlesEquilibres() {
-    try {
-      const pages = await Promise.all([fetchPage(1), fetchPage(2), fetchPage(3)]);
-      const all = pages.flat();
-
-      for (const article of all) {
-        const source = article.source_id || "source_inconnue";
-        if (!sourceCounter[source]) sourceCounter[source] = 0;
-
-        if (sourceCounter[source] < maxParSource && articlesTotal.length < maxArticles) {
-          sourceCounter[source]++;
-          articlesTotal.push({
-            title: article.title,
-            url: article.link,
-            source,
-            date: new Date(article.pubDate),
-            description: article.description || ""
-          });
-        }
-      }
-
-      afficherArticles();
-
-    } catch (err) {
-      console.error("Erreur lors du chargement :", err);
-      container.innerHTML = "<p class='text-red-600'>Impossible de charger les actualités pour le moment.</p>";
-    }
-  }
-
-  function afficherArticles() {
-    if (articlesTotal.length === 0) {
-      container.innerHTML = "<p>Aucun article trouvé.</p>";
-      return;
-    }
-
-    // Tri du plus récent au plus ancien
-    articlesTotal.sort((a, b) => b.date - a.date);
-
-    container.innerHTML = articlesTotal.map(a => `
-      <div class="bg-white border rounded shadow p-4 hover:shadow-md transition">
-        <h3 class="font-semibold text-green-700 text-base mb-1">
-          <a href="${a.url}" target="_blank" class="hover:underline">${a.title}</a>
-        </h3>
-        <span class="inline-block bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded mr-2">${a.source}</span>
-        <span class="text-gray-500 text-xs">${a.date.toLocaleDateString("fr-FR")}</span>
-        <p class="text-gray-700 mt-2">${a.description.slice(0, 150)}...</p>
-      </div>
-    `).join("");
-  }
-
-  chargerArticlesEquilibres();
-</script>
-
   </main>
 
   <!-- Footer -->
@@ -135,31 +62,70 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const newsdataContainer = document.getElementById("newsdata-container");
+    const container = document.getElementById("articles-divers");
+    const API_KEY = "pub_761284b4453e321120b9f74f9ab6932636d0e";
+    const maxArticles = 30;
+    const maxParSource = 3;
+    const sourceCounter = {};
+    const articlesTotal = [];
 
-    fetch("https://newsdata.io/api/1/news?apikey=pub_761284b4453e321120b9f74f9ab6932636d0e&country=dz&language=fr&category=top")
-      .then(res => res.json())
-      .then(data => {
-        if (!data.results || data.results.length === 0) {
-          newsdataContainer.innerHTML = "<p>Aucun article disponible pour l’instant.</p>";
-          return;
+    async function fetchPage(page) {
+      const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&country=dz&language=fr&category=top&q=algérie&page=${page}`;
+      const res = await fetch(url);
+      const data = await res.json();
+      return data.results || [];
+    }
+
+    async function chargerArticlesEquilibres() {
+      try {
+        const pages = await Promise.all([fetchPage(1), fetchPage(2), fetchPage(3)]);
+        const all = pages.flat();
+
+        for (const article of all) {
+          const source = article.source_id || "source_inconnue";
+          if (!sourceCounter[source]) sourceCounter[source] = 0;
+
+          if (sourceCounter[source] < maxParSource && articlesTotal.length < maxArticles) {
+            sourceCounter[source]++;
+            articlesTotal.push({
+              title: article.title,
+              url: article.link,
+              source,
+              date: new Date(article.pubDate),
+              description: article.description || ""
+            });
+          }
         }
 
-        const articles = data.results.slice(0, 10);
-        newsdataContainer.innerHTML = articles.map(item => `
-          <div class="bg-white border rounded shadow p-4 hover:shadow-md transition">
-            <h3 class="font-semibold text-green-700 text-base mb-1">
-              <a href="${item.link}" target="_blank" class="hover:underline">${item.title}</a>
-            </h3>
-            <p class="text-gray-500 mb-1">${item.source_id || "Source inconnue"} – ${new Date(item.pubDate).toLocaleDateString("fr-FR")}</p>
-            <p class="text-gray-700">${item.description?.slice(0, 150) || ""}...</p>
-          </div>
-        `).join("");
-      })
-      .catch(err => {
-        console.error("Erreur chargement Newsdata:", err);
-        newsdataContainer.innerHTML = "<p class='text-red-600'>Impossible de récupérer les données d’actualités.</p>";
-      });
+        afficherArticles();
+
+      } catch (err) {
+        console.error("Erreur lors du chargement :", err);
+        container.innerHTML = "<p class='text-red-600'>Impossible de charger les actualités pour le moment.</p>";
+      }
+    }
+
+    function afficherArticles() {
+      if (articlesTotal.length === 0) {
+        container.innerHTML = "<p>Aucun article trouvé.</p>";
+        return;
+      }
+
+      articlesTotal.sort((a, b) => b.date - a.date);
+
+      container.innerHTML = articlesTotal.map(a => `
+        <div class="bg-white border rounded shadow p-4 hover:shadow-md transition">
+          <h3 class="font-semibold text-green-700 text-base mb-1">
+            <a href="${a.url}" target="_blank" class="hover:underline">${a.title}</a>
+          </h3>
+          <span class="inline-block bg-gray-200 text-gray-700 text-xs px-2 py-1 rounded mr-2">${a.source}</span>
+          <span class="text-gray-500 text-xs">${a.date.toLocaleDateString("fr-FR")}</span>
+          <p class="text-gray-700 mt-2">${a.description.slice(0, 150)}...</p>
+        </div>
+      `).join("");
+    }
+
+    chargerArticlesEquilibres();
   </script>
 
 </body>
