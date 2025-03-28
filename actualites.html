@@ -10,7 +10,7 @@
 </head>
 <body class="bg-white text-gray-800">
 
-  <!-- Header complet avec navigation -->
+  <!-- Header avec navigation -->
   <header class="bg-green-700 text-white shadow">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold">Portail Algérie</h1>
@@ -40,82 +40,75 @@
     </nav>
   </header>
 
-  <!-- Titre de la page -->
+  <!-- Titre -->
   <section class="py-8 px-6 text-center bg-gray-50">
     <h2 class="text-3xl font-bold mb-2">Actualités</h2>
-    <p class="text-gray-600 text-sm">Derniers titres de la presse algérienne, télévision, réseaux sociaux et plus.</p>
+    <p class="text-gray-600 text-sm">Derniers titres de la presse algérienne et étrangère, mis à jour automatiquement.</p>
   </section>
 
   <main class="p-6 max-w-6xl mx-auto">
 
-    <!-- Actus depuis les flux RSS -->
-    <section class="mb-10">
-      <h2 class="text-2xl font-bold mb-4">🗞️ Articles récents (TSA, El Watan, Echorouk)</h2>
-      <div id="news-container" class="grid gap-6 md:grid-cols-2"></div>
-    </section>
+    <!-- Recherche + actualités -->
+    <section class="mt-6">
+      <h2 class="text-2xl font-bold mb-4">📰 Articles sélectionnés</h2>
 
-    <script>
-      const sources = [
-        {
-          name: "TSA",
-          url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.tsa-algerie.com/feed/"
-        },
-        {
-          name: "El Watan",
-          url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.elwatan.dz/feed"
-        },
-        {
-          name: "Echorouk",
-          url: "https://api.rss2json.com/v1/api.json?rss_url=https://www.echoroukonline.com/feed"
-        }
-      ];
+      <!-- Champ de recherche -->
+      <input type="text" id="filtre" placeholder="Rechercher un mot-clé..." 
+        class="mb-6 px-4 py-2 w-full border rounded shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-green-500" />
 
-      const container = document.getElementById("news-container");
-
-      sources.forEach(source => {
-        fetch(source.url)
-          .then(response => response.json())
-          .then(data => {
-            if (data.items) {
-              const articles = data.items.slice(0, 3);
-              articles.forEach(item => {
-                const card = document.createElement("div");
-                card.className = "bg-white border rounded p-4 shadow hover:shadow-md transition";
-                card.innerHTML = `
-                  <h3 class="text-lg font-semibold mb-1">
-                    <a href="${item.link}" target="_blank" class="text-green-700 hover:underline">${item.title}</a>
-                  </h3>
-                  <p class="text-sm text-gray-500 mb-2">${new Date(item.pubDate).toLocaleDateString("fr-FR")} — ${source.name}</p>
-                  <p class="text-sm text-gray-700">${item.description.slice(0, 120)}...</p>
-                `;
-                container.appendChild(card);
-              });
-            }
-          })
-          .catch(error => {
-            console.error(`Erreur pour ${source.name}`, error);
-          });
-      });
-    </script>
-
-    <!-- Actus via actus.json (NewsData.io via GitHub) -->
-    <section class="mt-12">
-      <h2 class="text-2xl font-bold mb-4">📰 Actualités sélectionnées (NewsData.io)</h2>
       <div id="actus-container" class="space-y-6 text-sm text-gray-800">Chargement en cours...</div>
     </section>
 
     <script>
+      let toutesLesActus = [];
+
       async function chargerActus() {
         const container = document.getElementById("actus-container");
+        const filtreInput = document.getElementById("filtre");
+
         try {
           const res = await fetch("https://raw.githubusercontent.com/Khaled-kak/portail-algerie-newsbot/main/actus.json");
           const data = await res.json();
 
-          const section = (titre, articles) => `
+          toutesLesActus = [];
+
+          if (data.presse_algerienne.length > 0) {
+            toutesLesActus.push({ titre: "🇩🇿 Presse algérienne", articles: data.presse_algerienne });
+          }
+
+          for (const [pays, articles] of Object.entries(data.presse_etrangere)) {
+            toutesLesActus.push({ titre: `🌍 Presse étrangère (${pays})`, articles });
+          }
+
+          afficherActus("");
+
+          filtreInput.addEventListener("input", e => {
+            const valeur = e.target.value.toLowerCase();
+            afficherActus(valeur);
+          });
+
+        } catch (e) {
+          container.innerHTML = "Erreur lors du chargement des actualités.";
+        }
+      }
+
+      function afficherActus(filtreTexte = "") {
+        const container = document.getElementById("actus-container");
+
+        const html = toutesLesActus.map(section => {
+          const filtrés = section.articles.filter(a =>
+            a.title.toLowerCase().includes(filtreTexte) ||
+            a.source.toLowerCase().includes(filtreTexte) ||
+            section.titre.toLowerCase().includes(filtreTexte)
+          );
+
+          if (filtrés.length === 0) return "";
+
+          return `
             <div>
-              <h3 class="text-xl font-semibold mb-2">${titre}</h3>
+              <h3 class="text-xl font-semibold mb-2">${section.titre}</h3>
               <ul class="space-y-1">
-                ${articles.map(a => `
+                ${filtrés.map(a => `
                   <li class="border-b pb-2">
                     <a href="${a.url}" class="text-green-700 font-medium hover:underline" target="_blank">${a.title}</a><br/>
                     <span class="text-gray-500">📰 ${a.source} — ${a.date}</span>
@@ -123,22 +116,9 @@
               </ul>
             </div>
           `;
+        }).join("<hr class='my-6'/>");
 
-          const html = [];
-
-          if (data.presse_algerienne.length > 0) {
-            html.push(section("🇩🇿 Presse algérienne", data.presse_algerienne));
-          }
-
-          for (const [pays, articles] of Object.entries(data.presse_etrangere)) {
-            html.push(section(`🌍 Presse étrangère (${pays})`, articles));
-          }
-
-          container.innerHTML = html.join("<hr class='my-6'/>");
-
-        } catch (e) {
-          container.innerHTML = "Erreur lors du chargement des actualités.";
-        }
+        container.innerHTML = html || "<p class='text-sm text-gray-500'>Aucun résultat ne correspond à votre recherche.</p>";
       }
 
       chargerActus();
