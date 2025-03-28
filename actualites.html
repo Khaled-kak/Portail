@@ -43,7 +43,7 @@
   <!-- Titre -->
   <section class="py-8 px-6 text-center bg-gray-50">
     <h2 class="text-3xl font-bold mb-2">Actualités</h2>
-    <p class="text-gray-600 text-sm">Une sélection équilibrée de l’actualité algérienne en français.</p>
+    <p class="text-gray-600 text-sm">Une sélection équilibrée de l’actualité autour de l’Algérie.</p>
   </section>
 
   <!-- Contenu -->
@@ -70,7 +70,7 @@
     const articlesTotal = [];
 
     async function fetchPage(page) {
-      const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&language=fr&q=algérie&page=${page}`;
+      const url = `https://newsdata.io/api/1/news?apikey=${API_KEY}&language=fr&q=algerie&page=${page}`;
       const res = await fetch(url);
       const data = await res.json();
       return data.results || [];
