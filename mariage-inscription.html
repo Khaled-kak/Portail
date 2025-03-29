@@ -18,65 +18,38 @@
   </header>
 
   <main class="max-w-3xl mx-auto p-6 bg-white mt-6 rounded shadow">
-    <h2 class="text-2xl font-semibold mb-4 text-green-700">1ère étape : Inscription anonyme</h2>
-    <p class="mb-6 text-gray-600">Cette première étape est entièrement anonyme. Elle nous permet de mieux comprendre votre profil et vos attentes. Vos données sont sécurisées et non partagées.</p>
+    <h2 class="text-2xl font-semibold mb-4 text-green-700">2ᵉ étape : Vérification et pseudonyme</h2>
+    <p class="mb-6 text-gray-600">Merci d'avoir soumis votre profil initial. Cette étape vous permet de générer un pseudonyme et de valider votre engagement à poursuivre.</p>
 
-    <form class="space-y-4">
+    <form class="space-y-5">
       <div>
-        <label class="block text-sm font-medium">Votre âge</label>
-        <input type="number" min="18" max="99" class="w-full border rounded px-3 py-2" required>
+        <label class="block text-sm font-medium">Aperçu de votre profil (résumé)</label>
+        <textarea class="w-full border rounded px-3 py-2" rows="5" readonly>
+Âge : 28 ans
+Sexe : Femme
+Ville : Oran (Algérie)
+Partenaire recherché : Homme, 30–40 ans, croyant, doux
+Situation : Employée en entreprise privée
+        </textarea>
       </div>
 
       <div>
-        <label class="block text-sm font-medium">Votre sexe</label>
-        <select class="w-full border rounded px-3 py-2">
-          <option value="">-- Sélectionnez --</option>
-          <option value="homme">Homme</option>
-          <option value="femme">Femme</option>
-        </select>
+        <label class="block text-sm font-medium">Choisissez un pseudonyme</label>
+        <input type="text" class="w-full border rounded px-3 py-2" placeholder="ex : CoeurSincère34" required>
       </div>
 
       <div>
-        <label class="block text-sm font-medium">Ville / Pays</label>
-        <input type="text" class="w-full border rounded px-3 py-2" required>
+        <label class="block text-sm font-medium">Créer un identifiant unique</label>
+        <input type="text" class="w-full border rounded px-3 py-2 bg-gray-100" value="PA-MAR-839JQ9" readonly>
+        <p class="text-xs text-gray-500 mt-1">Cet identifiant est associé à une empreinte numérique (type blockchain).</p>
       </div>
 
-      <div>
-        <label class="block text-sm font-medium">Situation professionnelle</label>
-        <input type="text" class="w-full border rounded px-3 py-2">
+      <div class="flex items-start">
+        <input type="checkbox" id="consentement" class="mr-2 mt-1">
+        <label for="consentement" class="text-sm">Je m'engage à poursuivre cette démarche avec sincérité et à respecter les autres utilisateurs.</label>
       </div>
 
-      <hr class="my-4">
-
-      <div>
-        <label class="block text-sm font-medium">Vous recherchez un(e) partenaire :</label>
-        <div class="grid grid-cols-2 gap-4">
-          <input type="number" placeholder="Age min" class="border rounded px-3 py-2">
-          <input type="number" placeholder="Age max" class="border rounded px-3 py-2">
-        </div>
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium mt-4">Sexe du partenaire recherché</label>
-        <select class="w-full border rounded px-3 py-2">
-          <option value="">-- Sélectionnez --</option>
-          <option value="homme">Homme</option>
-          <option value="femme">Femme</option>
-          <option value="indifférent">Indifférent</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium mt-4">Traits de personnalité importants</label>
-        <input type="text" placeholder="Ex : doux, sérieux, croyant..." class="w-full border rounded px-3 py-2">
-      </div>
-
-      <div>
-        <label class="block text-sm font-medium mt-4">Traits physiques recherchés (facultatif)</label>
-        <input type="text" placeholder="Ex : taille moyenne, cheveux foncés..." class="w-full border rounded px-3 py-2">
-      </div>
-
-      <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Commencer la démarche</button>
+      <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Étape suivante</button>
     </form>
   </main>
 
