@@ -1,36 +1,106 @@
-<script>
-  async function chargerArticles() {
-    const container = document.getElementById("news-list");
-    container.innerHTML = "<p>Chargement...</p>";
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actualités – Portail Algérie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style> body { font-family: sans-serif; } </style>
+</head>
+<body class="bg-white text-gray-800">
 
-    try {
-      const reponse = await fetch("https://portail-iota.vercel.app/api/news?q=algérie");
-      const donnees = await reponse.json();
-      
-      if (!donnees.articles || donnees.articles.length === 0) {
-        throw new Error("Aucun article trouvé");
+  <!-- Header -->
+  <header class="bg-green-700 text-white">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Portail Algérie</h1>
+      <div class="space-x-2">
+        <button class="border px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
+        <button class="border px-2 py-1 rounded hover:bg-white hover:text-green-700">AR</button>
+        <button class="border px-2 py-1 rounded hover:bg-white hover:text-green-700">EN</button>
+      </div>
+    </div>
+    <nav class="bg-green-800 px-4 py-2 text-sm">
+      <div class="max-w-6xl mx-auto flex flex-wrap gap-4">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="actualites.html" class="underline font-semibold">Actualités</a>
+        <a href="annonces.html" class="hover:underline">Annonces</a>
+        <a href="culture.html" class="hover:underline">Culture</a>
+        <a href="opportunites.html" class="hover:underline">Opportunités</a>
+        <a href="sport.html" class="hover:underline">Sport</a>
+        <a href="sante.html" class="hover:underline">Santé</a>
+        <a href="cuisine.html" class="hover:underline">Cuisine</a>
+        <a href="mariage.html" class="hover:underline">Mariage</a>
+        <a href="islam.html" class="hover:underline">Islam & Foi</a>
+        <a href="diaspora.html" class="hover:underline">Diaspora</a>
+        <a href="epicerie.html" class="hover:underline">Épicerie</a>
+        <a href="entreprendre.html" class="hover:underline">Entreprendre</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Titre de page -->
+  <section class="px-6 py-8 text-center bg-gray-50">
+    <h2 class="text-3xl font-bold mb-2">Actualités</h2>
+    <p class="text-gray-600 text-sm">Articles récents sur l'Algérie (via GNews.io)</p>
+  </section>
+
+  <!-- Contenu actualités -->
+  <main class="px-6 py-8 max-w-6xl mx-auto">
+    <div id="news-container" class="grid md:grid-cols-2 gap-6">
+      <p id="loading" class="text-gray-500">Chargement en cours...</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 text-center text-sm text-gray-600 py-4">
+    © <span id="year"></span> Portail Algérie. Tous droits réservés.
+  </footer>
+
+  <!-- Script -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    async function chargerArticles() {
+      const container = document.getElementById("news-container");
+      const loading = document.getElementById("loading");
+
+      try {
+        const res = await fetch("https://portail-algerie-api.vercel.app/api/news?q=algérie");
+        const data = await res.json();
+
+        if (!res.ok) {
+          container.innerHTML = `<p class="text-red-500">Erreur : ${data.error || "Impossible de récupérer les actualités."}</p>`;
+          return;
+        }
+
+        loading.remove();
+
+        if (!data.articles || data.articles.length === 0) {
+          container.innerHTML = `<p>Aucun article trouvé.</p>`;
+          return;
+        }
+
+        data.articles.forEach(article => {
+          const card = document.createElement("div");
+          card.className = "bg-white border rounded p-4 shadow";
+          card.innerHTML = `
+            <h3 class="text-lg font-semibold mb-2">
+              <a href="${article.url}" target="_blank" class="text-green-700 hover:underline">${article.title}</a>
+            </h3>
+            <p class="text-sm text-gray-600 mb-2">${new Date(article.publishedAt).toLocaleDateString("fr-FR")} — ${article.source.name}</p>
+            <p class="text-sm">${article.description || ""}</p>
+          `;
+          container.appendChild(card);
+        });
+      } catch (e) {
+        container.innerHTML = `<p class="text-red-500">Erreur lors du chargement des actualités.</p>`;
+        console.error(e);
       }
-
-      container.innerHTML = donnees.articles.map(article => `
-        <div class="border p-4 rounded shadow hover:shadow-md transition">
-          <h3 class="font-semibold text-lg mb-1">
-            <a href="${article.url}" target="_blank" class="text-green-700 hover:underline">
-              ${article.title}
-            </a>
-          </h3>
-          <p class="text-gray-700 text-sm">${article.description || ""}</p>
-        </div>
-      `).join("");
-      
-    } catch (erreur) {
-      container.innerHTML = `
-        <p class="text-red-600">Erreur : actualités non disponibles.</p>
-        <button onclick="chargerArticles()" class="mt-2 px-3 py-1 bg-gray-100 rounded">
-          Réessayer
-        </button>
-      `;
-      console.error("Erreur:", erreur);
     }
-  }
-  chargerArticles();
-</script>
+
+    chargerArticles();
+  </script>
+
+</body>
+</html>
