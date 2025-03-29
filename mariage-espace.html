@@ -3,63 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Espace Mariage – Portail Algérie</title>
+  <title>Mariage – Portail Algérie</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style> body { font-family: 'Inter', sans-serif; } </style>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 <body class="bg-white text-gray-800">
 
-  <!-- Navigation simple -->
+  <!-- Menu de navigation complet -->
   <header class="bg-green-700 text-white shadow">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Espace Mariage</h1>
-      <div class="flex items-center gap-4">
-        <a href="mariage-mon-profil.html" class="bg-white text-green-700 px-4 py-1 rounded hover:bg-gray-100">Mon profil</a>
-        <button id="logout-btn" class="bg-white text-green-700 px-4 py-1 rounded hover:bg-gray-100">Se déconnecter</button>
+      <h1 class="text-2xl font-bold">Portail Algérie</h1>
+      <div class="flex gap-2">
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">AR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">EN</button>
       </div>
     </div>
+    <nav class="bg-green-800 text-white text-sm">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap gap-4">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="actualites.html" class="hover:underline">Actualités</a>
+        <a href="annonces.html" class="hover:underline">Annonces</a>
+        <a href="culture.html" class="hover:underline">Culture</a>
+        <a href="opportunites.html" class="hover:underline">Opportunités</a>
+        <a href="sport.html" class="hover:underline">Sport</a>
+        <a href="sante.html" class="hover:underline">Santé</a>
+        <a href="cuisine.html" class="hover:underline">Cuisine</a>
+        <a href="mariage.html" class="underline font-semibold">Mariage</a>
+        <a href="islam.html" class="hover:underline">Islam & Foi</a>
+        <a href="diaspora.html" class="hover:underline">Diaspora</a>
+        <a href="epicerie.html" class="hover:underline">Épicerie</a>
+        <a href="entreprendre.html" class="hover:underline">Entreprendre</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+      </div>
+    </nav>
   </header>
 
-  <!-- Contenu principal -->
-  <main class="p-6 max-w-5xl mx-auto">
-    <h2 class="text-3xl font-bold mb-2 text-center">Bienvenue dans votre espace personnel</h2>
-    <p id="user-email" class="text-center text-gray-700 mb-6"></p>
+  <!-- Titre de la page -->
+  <section class="py-8 px-6 text-center bg-gray-50">
+    <h2 class="text-3xl font-bold mb-2">Trouver un mari ou une femme</h2>
+    <p class="text-gray-600 text-sm">Un service privé, modéré et payant pour des relations sérieuses et durables basées sur la compatibilité et la foi.</p>
+  </section>
 
-    <!-- Profils suggérés -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
-      <div class="border rounded p-4 shadow">
-        <h3 class="text-lg font-semibold">Homme, 34 ans</h3>
-        <p class="text-sm text-gray-600">Alger, ingénieur, cherche femme douce, sérieuse, entre 25 et 35 ans.</p>
-      </div>
-      <div class="border rounded p-4 shadow">
-        <h3 class="text-lg font-semibold">Femme, 28 ans</h3>
-        <p class="text-sm text-gray-600">Oran, médecin, cherche homme sérieux, pratiquant, entre 30 et 40 ans.</p>
-      </div>
-      <div class="border rounded p-4 shadow">
-        <h3 class="text-lg font-semibold">Homme, 42 ans</h3>
-        <p class="text-sm text-gray-600">Constantine, commerçant, souhaite une partenaire honnête et calme.</p>
-      </div>
-      <div class="border rounded p-4 shadow">
-        <h3 class="text-lg font-semibold">Femme, 31 ans</h3>
-        <p class="text-sm text-gray-600">Tizi Ouzou, enseignante, cherche homme cultivé, sincère, aimant les enfants.</p>
-      </div>
+  <!-- Étapes d'inscription -->
+  <main class="p-6 max-w-4xl mx-auto text-center">
+    <div class="bg-white p-6 rounded shadow mb-6">
+      <h3 class="text-xl font-semibold mb-4">Profil anonyme en 3 étapes</h3>
+      <ul class="list-disc text-left pl-8 text-gray-700 text-sm">
+        <li><strong>Étape 1 :</strong> Informations générales (âge, ville, profession...)</li>
+        <li><strong>Étape 2 :</strong> Partenaire recherché (âge, valeurs, situation...)</li>
+        <li><strong>Étape 3 :</strong> Traits de personnalité et aspects physiques</li>
+      </ul>
     </div>
 
-    <!-- Modification de profil -->
-    <section class="bg-gray-50 p-6 rounded shadow max-w-2xl mx-auto">
-      <h3 class="text-xl font-semibold mb-4 text-center">Modifier mon profil</h3>
-      <form id="update-profile-form" class="grid gap-4">
-        <input id="age" type="text" placeholder="Âge" class="border p-2 rounded" />
-        <input id="ville" type="text" placeholder="Ville" class="border p-2 rounded" />
-        <input id="profession" type="text" placeholder="Profession" class="border p-2 rounded" />
-        <textarea id="description" placeholder="Description de votre recherche (ex: je cherche une personne douce, pratiquante...)" class="border p-2 rounded"></textarea>
-        <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">Mettre à jour</button>
-      </form>
-    </section>
+    <a href="mariage-etape4.html" class="inline-block bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Passer à l'étape suivante</a>
   </main>
 
   <!-- Footer -->
@@ -68,54 +66,7 @@
   </footer>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyBFPIoOti25Wrf4cNfXwCv0zA_6A0igue0",
-      authDomain: "algeria-portal.firebaseapp.com",
-      projectId: "algeria-portal",
-      storageBucket: "algeria-portal.appspot.com",
-      messagingSenderId: "577711328640",
-      appId: "1:577711328640:web:90feffabe1441b72b70565"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    auth.onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = "mariage-login.html";
-      } else {
-        document.getElementById("user-email").textContent = `Connecté en tant que : ${user.email}`;
-      }
-    });
-
-    document.getElementById("logout-btn").addEventListener("click", async () => {
-      await auth.signOut();
-      window.location.href = "mariage-login.html";
-    });
-
-    document.getElementById("update-profile-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const user = auth.currentUser;
-      if (!user) return;
-
-      const profileData = {
-        age: document.getElementById("age").value,
-        ville: document.getElementById("ville").value,
-        profession: document.getElementById("profession").value,
-        description: document.getElementById("description").value,
-        updatedAt: new Date()
-      };
-
-      try {
-        await db.collection("mariage-profiles").doc(user.uid).set(profileData);
-        alert("Profil mis à jour avec succès.");
-      } catch (error) {
-        console.error("Erreur lors de la mise à jour du profil:", error);
-        alert("Une erreur est survenue.");
-      }
-    });
-
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 
 </body>
