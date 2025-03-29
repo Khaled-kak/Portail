@@ -3,70 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inscription Anonyme - Mariage | Portail Algérie</title>
+  <title>Inscription Mariage Anonyme – Portail Algérie</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
-<body class="bg-gray-50 min-h-screen flex items-center justify-center p-6">
-  <div class="max-w-xl w-full bg-white shadow rounded-lg p-6">
-    <h1 class="text-2xl font-bold text-center text-green-700 mb-4">Inscription Anonyme</h1>
-    <p class="text-sm text-gray-600 text-center mb-6">
-      Cette première étape est entièrement anonyme et vise à comprendre vos attentes. Aucune information sensible ne vous sera demandée.
-    </p>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- En-tête simplifiée -->
+  <header class="bg-green-700 text-white p-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-2xl font-bold">Portail Algérie – Service Mariage Sécurisé</h1>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white mt-6 rounded shadow">
+    <h2 class="text-2xl font-semibold mb-4 text-green-700">1ère étape : Inscription anonyme</h2>
+    <p class="mb-6 text-gray-600">Cette première étape est entièrement anonyme. Elle nous permet de mieux comprendre votre profil et vos attentes. Vos données sont sécurisées et non partagées.</p>
+
     <form class="space-y-4">
       <div>
-        <label class="block mb-1 font-semibold text-sm">Genre</label>
-        <select class="w-full border border-gray-300 rounded px-3 py-2">
-          <option>Homme</option>
-          <option>Femme</option>
+        <label class="block text-sm font-medium">Votre âge</label>
+        <input type="number" min="18" max="99" class="w-full border rounded px-3 py-2" required>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Votre sexe</label>
+        <select class="w-full border rounded px-3 py-2">
+          <option value="">-- Sélectionnez --</option>
+          <option value="homme">Homme</option>
+          <option value="femme">Femme</option>
         </select>
       </div>
 
       <div>
-        <label class="block mb-1 font-semibold text-sm">Tranche d'âge</label>
-        <select class="w-full border border-gray-300 rounded px-3 py-2">
-          <option>18-25</option>
-          <option>26-35</option>
-          <option>36-45</option>
-          <option>46+</option>
+        <label class="block text-sm font-medium">Ville / Pays</label>
+        <input type="text" class="w-full border rounded px-3 py-2" required>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium">Situation professionnelle</label>
+        <input type="text" class="w-full border rounded px-3 py-2">
+      </div>
+
+      <hr class="my-4">
+
+      <div>
+        <label class="block text-sm font-medium">Vous recherchez un(e) partenaire :</label>
+        <div class="grid grid-cols-2 gap-4">
+          <input type="number" placeholder="Age min" class="border rounded px-3 py-2">
+          <input type="number" placeholder="Age max" class="border rounded px-3 py-2">
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mt-4">Sexe du partenaire recherché</label>
+        <select class="w-full border rounded px-3 py-2">
+          <option value="">-- Sélectionnez --</option>
+          <option value="homme">Homme</option>
+          <option value="femme">Femme</option>
+          <option value="indifférent">Indifférent</option>
         </select>
       </div>
 
       <div>
-        <label class="block mb-1 font-semibold text-sm">Ville / Pays</label>
-        <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Ex: Alger, France">
+        <label class="block text-sm font-medium mt-4">Traits de personnalité importants</label>
+        <input type="text" placeholder="Ex : doux, sérieux, croyant..." class="w-full border rounded px-3 py-2">
       </div>
 
       <div>
-        <label class="block mb-1 font-semibold text-sm">Partenaire recherché</label>
-        <textarea rows="3" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Age souhaité, caractère, situation, etc."></textarea>
+        <label class="block text-sm font-medium mt-4">Traits physiques recherchés (facultatif)</label>
+        <input type="text" placeholder="Ex : taille moyenne, cheveux foncés..." class="w-full border rounded px-3 py-2">
       </div>
 
-      <div>
-        <label class="block mb-1 font-semibold text-sm">Situation professionnelle</label>
-        <select class="w-full border border-gray-300 rounded px-3 py-2">
-          <option>Étudiant(e)</option>
-          <option>En emploi</option>
-          <option>Entrepreneur(e)</option>
-          <option>Sans emploi</option>
-          <option>Autre</option>
-        </select>
-      </div>
-
-      <div>
-        <label class="block mb-1 font-semibold text-sm">Traits de personnalité</label>
-        <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Ex: calme, sociable, ambitieux(se)">
-      </div>
-
-      <div>
-        <label class="block mb-1 font-semibold text-sm">Apparence (facultatif)</label>
-        <input type="text" class="w-full border border-gray-300 rounded px-3 py-2" placeholder="Ex: taille, style, etc.">
-      </div>
-
-      <button type="submit" class="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded font-semibold">Valider l'étape 1</button>
+      <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Commencer la démarche</button>
     </form>
-    <p class="text-xs text-center text-gray-400 mt-4">Aucune donnée nominative ne sera stockée à cette étape.</p>
-  </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 mt-10 mb-4">
+    &copy; 2025 Portail Algérie. Mariage sérieux et sécurisé.
+  </footer>
+
 </body>
 </html>
