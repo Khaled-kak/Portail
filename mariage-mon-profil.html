@@ -2,33 +2,37 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mon Profil – Mariage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mon profil – Portail Algérie</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style> body { font-family: 'Inter', sans-serif; } </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>body { font-family: 'Inter', sans-serif; }</style>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 <body class="bg-white text-gray-800">
 
-  <!-- En-tête -->
   <header class="bg-green-700 text-white shadow">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Mon Profil</h1>
-      <a href="mariage-espace.html" class="bg-white text-green-700 px-4 py-1 rounded hover:bg-gray-100">Retour à l’espace</a>
+      <h1 class="text-xl font-bold">Mon Profil</h1>
+      <a href="mariage-espace.html" class="bg-white text-green-700 px-3 py-1 rounded hover:bg-gray-100">← Retour</a>
     </div>
   </header>
 
   <main class="max-w-2xl mx-auto p-6">
-    <h2 class="text-2xl font-bold mb-4 text-center">Informations du compte</h2>
-    <div class="bg-gray-100 rounded p-4 shadow text-center">
-      <p id="user-email" class="text-lg font-semibold text-gray-700"></p>
-      <p class="text-sm text-gray-500 mt-2">Vous pourrez bientôt modifier votre profil ici.</p>
-    </div>
+    <h2 class="text-2xl font-bold mb-4 text-center">Mes informations personnelles</h2>
+    
+    <form id="profile-form" class="grid gap-4">
+      <input id="age" type="text" placeholder="Âge" class="border p-2 rounded" />
+      <input id="ville" type="text" placeholder="Ville" class="border p-2 rounded" />
+      <input id="profession" type="text" placeholder="Profession" class="border p-2 rounded" />
+      <textarea id="description" placeholder="Votre présentation..." class="border p-2 rounded"></textarea>
+      <button type="submit" class="bg-green-700 text-white py-2 px-4 rounded hover:bg-green-800">Mettre à jour mon profil</button>
+    </form>
   </main>
 
-  <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600 mt-10">
+  <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600 mt-8">
     &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
   </footer>
 
@@ -43,12 +47,41 @@
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
+    const db = firebase.firestore();
 
-    auth.onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = "mariage-login.html";
-      } else {
-        document.getElementById("user-email").textContent = `Connecté en tant que : ${user.email}`;
+    auth.onAuthStateChanged(async user => {
+      if (!user) return window.location.href = "mariage-login.html";
+
+      const doc = await db.collection("mariage-profiles").doc(user.uid).get();
+      const data = doc.data();
+      if (data) {
+        document.getElementById("age").value = data.age || "";
+        document.getElementById("ville").value = data.ville || "";
+        document.getElementById("profession").value = data.profession || "";
+        document.getElementById("description").value = data.description || "";
+      }
+    });
+
+    document.getElementById("profile-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const data = {
+        age: document.getElementById("age").value,
+        ville: document.getElementById("ville").value,
+        profession: document.getElementById("profession").value,
+        description: document.getElementById("description").value,
+        updatedAt: new Date()
+      };
+
+      try {
+        await db.collection("mariage-profiles").doc(user.uid).set(data);
+        alert("Profil mis à jour !");
+        window.location.href = "mariage-espace.html";
+      } catch (err) {
+        console.error(err);
+        alert("Erreur lors de la mise à jour.");
       }
     });
 
