@@ -9,6 +9,7 @@
   <style> body { font-family: 'Inter', sans-serif; } </style>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
 </head>
 <body class="bg-white text-gray-800">
 
@@ -51,11 +52,11 @@
     <!-- Modification de profil -->
     <section class="bg-gray-50 p-6 rounded shadow max-w-2xl mx-auto">
       <h3 class="text-xl font-semibold mb-4 text-center">Modifier mon profil</h3>
-      <form class="grid gap-4">
-        <input type="text" placeholder="Âge" class="border p-2 rounded" />
-        <input type="text" placeholder="Ville" class="border p-2 rounded" />
-        <input type="text" placeholder="Profession" class="border p-2 rounded" />
-        <textarea placeholder="Description de votre recherche (ex: je cherche une personne douce, pratiquante...)" class="border p-2 rounded"></textarea>
+      <form id="update-profile-form" class="grid gap-4">
+        <input id="age" type="text" placeholder="Âge" class="border p-2 rounded" />
+        <input id="ville" type="text" placeholder="Ville" class="border p-2 rounded" />
+        <input id="profession" type="text" placeholder="Profession" class="border p-2 rounded" />
+        <textarea id="description" placeholder="Description de votre recherche (ex: je cherche une personne douce, pratiquante...)" class="border p-2 rounded"></textarea>
         <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">Mettre à jour</button>
       </form>
     </section>
@@ -77,6 +78,7 @@
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
+    const db = firebase.firestore();
 
     auth.onAuthStateChanged(user => {
       if (!user) {
@@ -89,6 +91,28 @@
     document.getElementById("logout-btn").addEventListener("click", async () => {
       await auth.signOut();
       window.location.href = "mariage-login.html";
+    });
+
+    document.getElementById("update-profile-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const profileData = {
+        age: document.getElementById("age").value,
+        ville: document.getElementById("ville").value,
+        profession: document.getElementById("profession").value,
+        description: document.getElementById("description").value,
+        updatedAt: new Date()
+      };
+
+      try {
+        await db.collection("mariage-profiles").doc(user.uid).set(profileData);
+        alert("Profil mis à jour avec succès.");
+      } catch (error) {
+        console.error("Erreur lors de la mise à jour du profil:", error);
+        alert("Une erreur est survenue.");
+      }
     });
 
     document.getElementById("year").textContent = new Date().getFullYear();
