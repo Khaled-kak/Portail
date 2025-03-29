@@ -18,35 +18,38 @@
   </header>
 
   <main class="max-w-3xl mx-auto p-6 bg-white mt-6 rounded shadow">
-    <h2 class="text-2xl font-semibold mb-4 text-green-700">2ᵉ étape : Vérification et pseudonyme</h2>
-    <p class="mb-6 text-gray-600">Merci d'avoir soumis votre profil initial. Cette étape vous permet de générer un pseudonyme et de valider votre engagement à poursuivre.</p>
+    <h2 class="text-2xl font-semibold mb-4 text-green-700">4ᵉ étape : Prise de contact sécurisée</h2>
+    <p class="mb-6 text-gray-600">Vous pouvez maintenant recevoir des propositions anonymisées. Si un profil vous semble compatible, une mise en relation sécurisée vous sera proposée.</p>
 
     <form class="space-y-5">
       <div>
-        <label class="block text-sm font-medium">Aperçu de votre profil (résumé)</label>
-        <textarea class="w-full border rounded px-3 py-2" rows="5" readonly>
-Âge : 28 ans
-Sexe : Femme
-Ville : Oran (Algérie)
-Partenaire recherché : Homme, 30–40 ans, croyant, doux
-Situation : Employée en entreprise privée
-        </textarea>
+        <label class="block text-sm font-medium">Souhaitez-vous recevoir :</label>
+        <select class="w-full border rounded px-3 py-2">
+          <option value="3">Jusqu’à 3 profils proposés</option>
+          <option value="5">Jusqu’à 5 profils proposés</option>
+          <option value="autre">Laisser l’algorithme décider</option>
+        </select>
       </div>
 
       <div>
-        <label class="block text-sm font-medium">Choisissez un pseudonyme</label>
-        <input type="text" class="w-full border rounded px-3 py-2" placeholder="ex : CoeurSincère34" required>
+        <label class="block text-sm font-medium">Préférez-vous :</label>
+        <select class="w-full border rounded px-3 py-2">
+          <option value="filtre">Que l'algorithme filtre pour moi</option>
+          <option value="libre">Voir tout et décider moi-même</option>
+        </select>
       </div>
 
       <div>
-        <label class="block text-sm font-medium">Créer un identifiant unique</label>
-        <input type="text" class="w-full border rounded px-3 py-2 bg-gray-100" value="PA-MAR-839JQ9" readonly>
-        <p class="text-xs text-gray-500 mt-1">Cet identifiant est associé à une empreinte numérique (type blockchain).</p>
+        <label class="block text-sm font-medium">Souhaitez-vous activer la vérification blockchain ?</label>
+        <select class="w-full border rounded px-3 py-2">
+          <option value="oui">Oui, pour renforcer la fiabilité</option>
+          <option value="non">Non pour l’instant</option>
+        </select>
       </div>
 
       <div class="flex items-start">
-        <input type="checkbox" id="consentement" class="mr-2 mt-1">
-        <label for="consentement" class="text-sm">Je m'engage à poursuivre cette démarche avec sincérité et à respecter les autres utilisateurs.</label>
+        <input type="checkbox" id="engagement3" class="mr-2 mt-1">
+        <label for="engagement3" class="text-sm">Je comprends que mes informations resteront confidentielles jusqu’à mon consentement explicite.</label>
       </div>
 
       <button type="submit" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Étape suivante</button>
