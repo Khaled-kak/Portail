@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Étapes 1 à 3 – Inscription Mariage | Portail Algérie</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <header class="bg-green-700 text-white p-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-2xl font-bold">Portail Algérie – Étapes 1 à 3 du parcours Mariage</h1>
+    </div>
+  </header>
+
+  <main class="max-w-3xl mx-auto p-6 bg-white mt-6 rounded shadow">
+
+    <!-- Étape 1 -->
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-green-700 mb-2">1ᵉˢ étape : Inscription anonyme</h2>
+      <p class="mb-4 text-gray-600">Fournissez des informations générales sans identifiants personnels.</p>
+      <form class="space-y-3">
+        <input class="w-full border rounded px-3 py-2" type="number" placeholder="Âge" required>
+        <select class="w-full border rounded px-3 py-2">
+          <option>Homme</option>
+          <option>Femme</option>
+        </select>
+        <input class="w-full border rounded px-3 py-2" type="text" placeholder="Ville / Pays">
+        <input class="w-full border rounded px-3 py-2" type="text" placeholder="Situation professionnelle">
+      </form>
+    </section>
+
+    <!-- Étape 2 -->
+    <section class="mb-12">
+      <h2 class="text-xl font-semibold text-green-700 mb-2">2ᵉˢ étape : Création de pseudonyme</h2>
+      <p class="mb-4 text-gray-600">Validez votre engagement en anonymat et créez votre identifiant unique.</p>
+      <form class="space-y-3">
+        <input class="w-full border rounded px-3 py-2" type="text" placeholder="Pseudonyme (ex : CoeurSincère75)">
+        <input class="w-full border rounded px-3 py-2 bg-gray-100" type="text" value="PA-MAR-XXXXXX" readonly>
+        <label class="inline-flex items-center"><input type="checkbox" class="mr-2"> Je m'engage à une démarche sincère</label>
+      </form>
+    </section>
+
+    <!-- Étape 3 -->
+    <section>
+      <h2 class="text-xl font-semibold text-green-700 mb-2">3ᵉˢ étape : Compatibilité</h2>
+      <p class="mb-4 text-gray-600">Précisez vos attentes pour recevoir des profils correspondants.</p>
+      <form class="space-y-3">
+        <select class="w-full border rounded px-3 py-2" multiple>
+          <option>Foi / Valeurs religieuses</option>
+          <option>Respect mutuel</option>
+          <option>Dialogue & complicité</option>
+          <option>Stabilité financière</option>
+          <option>Désir d'enfants</option>
+        </select>
+        <select class="w-full border rounded px-3 py-2">
+          <option>Souhaite avoir des enfants</option>
+          <option>Indifférent</option>
+          <option>Non</option>
+        </select>
+      </form>
+    </section>
+
+    <div class="mt-8 text-right">
+      <a href="mariage-etape4.html" class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Passer à l'étape 4</a>
+    </div>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 mt-10 mb-4">
+    &copy; 2025 Portail Algérie. Mariage sérieux et sécurisé.
+  </footer>
+
+</body>
+</html>
