@@ -1,39 +1,36 @@
-<!-- Section Actus -->
-<section class="px-6 py-8 max-w-6xl mx-auto">
-  <h2 class="text-3xl font-bold mb-4">Actualités</h2>
-  <p class="text-gray-600 mb-6">Articles récents sur l'Algérie (via GNews.io)</p>
-  <div id="news-list" class="grid md:grid-cols-2 gap-6 text-sm"></div>
-</section>
-
 <script>
   async function chargerArticles() {
     const container = document.getElementById("news-list");
     container.innerHTML = "<p>Chargement...</p>";
 
     try {
-      const res = await fetch("https://portail-algerie-api.vercel.app/api/news?q=algérie");
-      const data = await res.json();
-
-      if (!data.articles || data.articles.length === 0) {
-        container.innerHTML = "<p>Aucun article trouvé.</p>";
-        return;
+      const reponse = await fetch("https://portail-iota.vercel.app/api/news?q=algérie");
+      const donnees = await reponse.json();
+      
+      if (!donnees.articles || donnees.articles.length === 0) {
+        throw new Error("Aucun article trouvé");
       }
 
-      container.innerHTML = data.articles.map(article => `
+      container.innerHTML = donnees.articles.map(article => `
         <div class="border p-4 rounded shadow hover:shadow-md transition">
           <h3 class="font-semibold text-lg mb-1">
-            <a href="${article.url}" target="_blank" class="text-green-700 hover:underline">${article.title}</a>
+            <a href="${article.url}" target="_blank" class="text-green-700 hover:underline">
+              ${article.title}
+            </a>
           </h3>
-          <p class="text-gray-500 text-xs mb-2">${new Date(article.publishedAt).toLocaleDateString("fr-FR")} – ${article.source.name}</p>
           <p class="text-gray-700 text-sm">${article.description || ""}</p>
         </div>
       `).join("");
-
-    } catch (e) {
-      console.error("Erreur lors du chargement des articles :", e);
-      container.innerHTML = "<p class='text-red-600'>Erreur lors du chargement des actualités.</p>";
+      
+    } catch (erreur) {
+      container.innerHTML = `
+        <p class="text-red-600">Erreur : actualités non disponibles.</p>
+        <button onclick="chargerArticles()" class="mt-2 px-3 py-1 bg-gray-100 rounded">
+          Réessayer
+        </button>
+      `;
+      console.error("Erreur:", erreur);
     }
   }
-
   chargerArticles();
 </script>
