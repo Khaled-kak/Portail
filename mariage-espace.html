@@ -14,39 +14,53 @@
   <header class="bg-green-700 text-white shadow">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold">Portail Algérie</h1>
-      <button onclick="logout()" class="bg-white text-green-700 px-4 py-1 rounded hover:bg-gray-100">Se déconnecter</button>
+      <div class="flex gap-2">
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">AR</button>
+        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">EN</button>
+      </div>
     </div>
+    <nav class="bg-green-800 text-white text-sm">
+      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap gap-4">
+        <a href="index.html" class="hover:underline">Accueil</a>
+        <a href="actualites.html" class="hover:underline">Actualités</a>
+        <a href="annonces.html" class="hover:underline">Annonces</a>
+        <a href="culture.html" class="hover:underline">Culture</a>
+        <a href="opportunites.html" class="hover:underline">Opportunités</a>
+        <a href="sport.html" class="hover:underline">Sport</a>
+        <a href="sante.html" class="hover:underline">Santé</a>
+        <a href="cuisine.html" class="hover:underline">Cuisine</a>
+        <a href="mariage.html" class="underline font-semibold">Mariage</a>
+        <a href="islam.html" class="hover:underline">Islam & Foi</a>
+        <a href="diaspora.html" class="hover:underline">Diaspora</a>
+        <a href="epicerie.html" class="hover:underline">Épicerie</a>
+        <a href="entreprendre.html" class="hover:underline">Entreprendre</a>
+        <a href="contact.html" class="hover:underline">Contact</a>
+      </div>
+    </nav>
   </header>
 
+  <!-- Titre de la page -->
+  <section class="py-8 px-6 text-center bg-gray-50">
+    <h2 class="text-3xl font-bold mb-2">Trouver un mari ou une femme</h2>
+    <p class="text-gray-600 text-sm">Un service privé, modéré et payant pour des relations sérieuses et durables basées sur la compatibilité et la foi.</p>
+  </section>
+
+  <!-- Étapes d'inscription -->
   <main class="p-6 max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl font-bold mb-2">Bienvenue dans votre espace personnel</h2>
-    <p class="text-sm text-gray-700 mb-6">Connecté en tant que : <span id="userEmail">...</span></p>
-
-    <div class="grid gap-4 md:grid-cols-2">
-      <div class="border p-4 rounded shadow">
-        <h3 class="font-bold">Homme, 34 ans</h3>
-        <p>Alger, ingénieur, cherche femme douce, sérieuse, entre 25 et 35 ans.</p>
-      </div>
-      <div class="border p-4 rounded shadow">
-        <h3 class="font-bold">Femme, 28 ans</h3>
-        <p>Oran, médecin, cherche homme sérieux, pratiquant, entre 30 et 40 ans.</p>
-      </div>
-      <div class="border p-4 rounded shadow">
-        <h3 class="font-bold">Homme, 42 ans</h3>
-        <p>Constantine, commerçant, souhaite une partenaire honnête et calme.</p>
-      </div>
-      <div class="border p-4 rounded shadow">
-        <h3 class="font-bold">Femme, 31 ans</h3>
-        <p>Tizi Ouzou, enseignante, cherche homme cultivé, sincère, aimant les enfants.</p>
-      </div>
+    <div class="bg-white p-6 rounded shadow mb-6">
+      <h3 class="text-xl font-semibold mb-4">Profil anonyme en 3 étapes</h3>
+      <ul class="list-disc text-left pl-8 text-gray-700 text-sm">
+        <li><strong>Étape 1 :</strong> Informations générales (âge, ville, profession...)</li>
+        <li><strong>Étape 2 :</strong> Partenaire recherché (âge, valeurs, situation...)</li>
+        <li><strong>Étape 3 :</strong> Traits de personnalité et aspects physiques</li>
+      </ul>
     </div>
 
-    <div class="mt-8 flex flex-col items-center gap-4">
-      <a href="mariage-mon-profil.html" class="inline-block bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Modifier mon profil</a>
-      <a href="mariage-profils.html" class="inline-block bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Voir les profils compatibles</a>
-    </div>
+    <a id="nextStepBtn" href="#" class="inline-block bg-green-700 text-white px-6 py-2 rounded hover:bg-green-800">Passer à l'étape suivante</a>
   </main>
 
+  <!-- Footer -->
   <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600 mt-6">
     &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
   </footer>
@@ -54,17 +68,19 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    const userEmail = localStorage.getItem('userEmail');
-    if (!userEmail) {
-      window.location.href = 'mariage-login.html';
-    } else {
-      document.getElementById('userEmail').textContent = userEmail;
-    }
+    // Vérifier si l'utilisateur a validé les étapes précédentes
+    const etape1 = localStorage.getItem('etape1');
+    const etape2 = localStorage.getItem('etape2');
+    const etape3 = localStorage.getItem('etape3');
 
-    function logout() {
-      localStorage.removeItem('userEmail');
-      window.location.href = 'mariage-login.html';
-    }
+    document.getElementById('nextStepBtn').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (etape1 && etape2 && etape3) {
+        window.location.href = "mariage-etape4.html";
+      } else {
+        alert("Veuillez remplir les étapes 1 à 3 avant de continuer.");
+      }
+    });
   </script>
 
 </body>
