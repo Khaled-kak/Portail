@@ -1,120 +1,132 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Portail Algérie</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    nav {
+      background-color: #004b4f;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    nav li {
+      margin: 0 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+    }
+
+    nav a:hover {
+      background-color: #007b7f;
+      border-radius: 4px;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .left, .right {
+      flex: 1;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background: white;
+    }
+
+    .center {
+      flex: 2;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background: white;
+    }
+
+    .a-la-une {
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    .a-la-une h2 {
+      font-size: 24px;
+      color: #004b4f;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+    }
   </style>
 </head>
-<body class="bg-white text-gray-800">
-  <!-- Header avec navigation -->
-  <header class="bg-green-700 text-white shadow">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">Portail Algérie</h1>
-      <div class="flex gap-2">
-        <a href="inscription.html" class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">Inscription</a>
-        <a href="connexion.html" class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">Connexion</a>
-        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">FR</button>
-        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">AR</button>
-        <button class="border border-white px-2 py-1 rounded hover:bg-white hover:text-green-700">EN</button>
-      </div>
-    </div>
-    <nav class="bg-green-800 text-white text-sm">
-      <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap gap-4">
-        <a href="index.html" class="underline font-semibold">Accueil</a>
-        <a href="actualites.html" class="hover:underline">Actualités</a>
-        <a href="annonces.html" class="hover:underline">Annonces</a>
-        <a href="culture.html" class="hover:underline">Culture</a>
-        <a href="opportunites.html" class="hover:underline">Opportunités</a>
-        <a href="sport.html" class="hover:underline">Sport</a>
-        <a href="sante.html" class="hover:underline">Santé</a>
-        <a href="cuisine.html" class="hover:underline">Cuisine</a>
-        <a href="mariage.html" class="hover:underline">Mariage</a>
-        <a href="islam.html" class="hover:underline">Islam & Foi</a>
-        <a href="diaspora.html" class="hover:underline">Diaspora</a>
-        <a href="epicerie.html" class="hover:underline">Épicerie</a>
-        <a href="entreprendre.html" class="hover:underline">Entreprendre</a>
-        <a href="contact.html" class="hover:underline">Contact</a>
-      </div>
-    </nav>
-  </header>
+<body>
 
-  <!-- Section à la une -->
-  <section class="bg-gray-100 py-8 px-6 text-center">
-    <h2 class="text-3xl font-bold mb-4">À la Une</h2>
-    <div class="max-w-4xl mx-auto">
-      <img src="https://source.unsplash.com/featured/?algeria,news" alt="À la une" class="rounded-lg mb-4 w-full h-64 object-cover">
-      <p class="text-lg text-gray-700">Suivez l'actualité politique, économique, sociale et culturelle de l'Algérie en temps réel. Notre équipe sélectionne les infos les plus pertinentes pour vous tenir informé avec rigueur et clarté.</p>
-    </div>
-  </section>
+<nav>
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="anonces.html">Annonces</a></li>
+    <li><a href="dz-shop.html">DZ Shop</a></li>
+    <li><a href="diaspora.html">Diaspora</a></li>
+    <li><a href="mariage.html">Mariage</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- Grille principale -->
-  <main class="p-6 grid gap-6">
-    <div class="grid md:grid-cols-3 gap-4">
-      <section class="border p-4 rounded shadow hover:shadow-md">
-        <h2 class="text-xl font-semibold mb-2">Actualités</h2>
-        <ul class="list-disc ml-5 text-sm text-gray-700">
-          <li><a href="#" class="hover:underline">Journaux</a></li>
-          <li><a href="#" class="hover:underline">TV en direct</a></li>
-          <li><a href="#" class="hover:underline">Radio</a></li>
-          <li><a href="#" class="hover:underline">Réseaux sociaux influents</a></li>
-        </ul>
-      </section>
+<div class="container">
+  <div class="left">
+    <h3>Culture</h3>
+    <p>Extrait culture 1...</p>
+    <p>Extrait culture 2...</p>
 
-      <section class="border p-4 rounded shadow hover:shadow-md">
-        <h2 class="text-xl font-semibold mb-2">Opportunités</h2>
-        <ul class="list-disc ml-5 text-sm text-gray-700">
-          <li><a href="#" class="hover:underline">Études à l'étranger</a></li>
-          <li><a href="#" class="hover:underline">Emploi international</a></li>
-          <li><a href="#" class="hover:underline">Immigration</a></li>
-          <li><a href="#" class="hover:underline">Guides pratiques</a></li>
-        </ul>
-      </section>
+    <h3>Sport</h3>
+    <p>Résultat match...</p>
+    <p>Interview joueur...</p>
+  </div>
 
-      <section class="border p-4 rounded shadow hover:shadow-md">
-        <h2 class="text-xl font-semibold mb-2">Annonces</h2>
-        <ul class="list-disc ml-5 text-sm text-gray-700">
-          <li><a href="#" class="hover:underline">Immobilier</a></li>
-          <li><a href="#" class="hover:underline">Emploi local</a></li>
-          <li><a href="#" class="hover:underline">Vente/Achat</a></li>
-          <li><a href="#" class="hover:underline">Services</a></li>
-        </ul>
-      </section>
+  <div class="center">
+    <div class="a-la-une">
+      <h2>À la une</h2>
+      <h3>Titre principal d'actualité</h3>
+      <p>Résumé de l'article principal, très visible. Lorem ipsum dolor sit amet...</p>
+      <img src="https://source.unsplash.com/800x400/?algeria,news" width="100%">
     </div>
 
-    <div class="grid md:grid-cols-2 gap-4">
-      <section class="border p-4 rounded shadow hover:shadow-md">
-        <h2 class="text-xl font-semibold mb-2">Culture & Lifestyle</h2>
-        <ul class="list-disc ml-5 text-sm text-gray-700">
-          <li><a href="#" class="hover:underline">Cuisine</a></li>
-          <li><a href="#" class="hover:underline">Traditions</a></li>
-          <li><a href="#" class="hover:underline">Art & Musique</a></li>
-          <li><a href="#" class="hover:underline">Événements</a></li>
-        </ul>
-      </section>
-
-      <section class="border p-4 rounded shadow hover:shadow-md">
-        <h2 class="text-xl font-semibold mb-2">Recherche & Newsletter</h2>
-        <form action="https://formspree.io/f/xgvalwyp" method="POST" class="flex flex-col gap-2">
-          <input type="email" name="email" placeholder="Votre adresse email..." required class="border px-3 py-2 rounded" />
-          <button type="submit" class="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800">S'abonner</button>
-        </form>
-      </section>
+    <div class="revue-presse">
+      <h3>Revue de presse</h3>
+      <p>[À remplir dynamiquement]</p>
     </div>
-  </main>
+  </div>
 
-  <!-- Footer -->
-  <footer class="bg-gray-100 text-sm text-center p-4 text-gray-600">
-    &copy; <span id="year"></span> Portail Algérie. Tous droits réservés.
-  </footer>
+  <div class="right">
+    <h3>Islam & Foi</h3>
+    <p>Verset du jour, réflexion courte...</p>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+    <h3>Éducation</h3>
+    <p>Réforme du bac, nouveau programme...</p>
+  </div>
+</div>
+
 </body>
 </html>
