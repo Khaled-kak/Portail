@@ -1,132 +1,33 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <title>Portail Algérie</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f8f8f8;
-    }
+<section id="revue-presse">
+  <h2>📰 Revue de presse – 30 avril 2025 (matin)</h2>
+  <p id="synthese"></p>
+  <div id="articles"></div>
+</section>
 
-    nav {
-      background-color: #004b4f;
-      padding: 10px;
-    }
+<script>
+  fetch('revue-presse/revue-2025-04-30-matin.json')
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('synthese').textContent = data.synthese_generale;
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      flex-wrap: wrap;
-    }
-
-    nav li {
-      margin: 0 10px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 8px 12px;
-    }
-
-    nav a:hover {
-      background-color: #007b7f;
-      border-radius: 4px;
-    }
-
-    .container {
-      display: flex;
-      max-width: 1200px;
-      margin: auto;
-      padding: 20px;
-      gap: 20px;
-    }
-
-    .left, .right {
-      flex: 1;
-      border: 1px solid #ccc;
-      padding: 10px;
-      background: white;
-    }
-
-    .center {
-      flex: 2;
-      border: 1px solid #ccc;
-      padding: 10px;
-      background: white;
-    }
-
-    .a-la-une {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 20px;
-      margin-bottom: 20px;
-    }
-
-    .a-la-une h2 {
-      font-size: 24px;
-      color: #004b4f;
-    }
-
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-    }
-  </style>
-</head>
-<body>
-
-<nav>
-  <ul>
-    <li><a href="index.html">Accueil</a></li>
-    <li><a href="anonces.html">Annonces</a></li>
-    <li><a href="dz-shop.html">DZ Shop</a></li>
-    <li><a href="diaspora.html">Diaspora</a></li>
-    <li><a href="mariage.html">Mariage</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
-
-<div class="container">
-  <div class="left">
-    <h3>Culture</h3>
-    <p>Extrait culture 1...</p>
-    <p>Extrait culture 2...</p>
-
-    <h3>Sport</h3>
-    <p>Résultat match...</p>
-    <p>Interview joueur...</p>
-  </div>
-
-  <div class="center">
-    <div class="a-la-une">
-      <h2>À la une</h2>
-      <h3>Titre principal d'actualité</h3>
-      <p>Résumé de l'article principal, très visible. Lorem ipsum dolor sit amet...</p>
-      <img src="https://source.unsplash.com/800x400/?algeria,news" width="100%">
-    </div>
-
-    <div class="revue-presse">
-      <h3>Revue de presse</h3>
-      <p>[À remplir dynamiquement]</p>
-    </div>
-  </div>
-
-  <div class="right">
-    <h3>Islam & Foi</h3>
-    <p>Verset du jour, réflexion courte...</p>
-
-    <h3>Éducation</h3>
-    <p>Réforme du bac, nouveau programme...</p>
-  </div>
-</div>
-
-</body>
-</html>
+      const container = document.getElementById('articles');
+      data.articles.forEach(article => {
+        const card = document.createElement('div');
+        card.style.border = "1px solid #ccc";
+        card.style.margin = "15px 0";
+        card.style.padding = "10px";
+        card.innerHTML = `
+          <img src="${article.image}" alt="" style="width:100%;max-height:300px;object-fit:cover;">
+          <h3>${article.titre}</h3>
+          <p><strong>${article.source}</strong> — ${article.date}</p>
+          <p>${article.resume}</p>
+          <a href="${article.url}" target="_blank">Lire l'article complet</a>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      document.getElementById('synthese').textContent = "Impossible de charger la revue de presse.";
+      console.error(err);
+    });
+</script>
