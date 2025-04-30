@@ -1,0 +1,117 @@
+{
+  "date": "2025-04-30",
+  "edition": "matin",
+  "synthese_generale": "L’Algérie se place aujourd’hui au cœur d’enjeux croisés : renforcement militaire, essor énergétique, soft power sportif, pression diplomatique. Tandis que la mémoire de la guerre refait surface en France, les tensions régionales s’enracinent. Dans ce contexte, le récit national se reconstruit... et se défend.",
+  "articles": [
+    {
+      "titre": "Sonatrach, le géant algérien sur tous les fronts",
+      "source": "L’Expression",
+      "date": "2025-04-30",
+      "a_la_une": true,
+      "categorie": "économie",
+      "resume": "Gaz, pétrole, renouvelables : la locomotive énergétique de l’Algérie multiplie les offensives économiques et diplomatiques.",
+      "url": "https://www.lexpressiondz.com/economie/sonatrach-sur-tous-les-fronts-393242",
+      "image": "https://images.unsplash.com/photo-1581090700227-1e8a1d1b6b9b"
+    },
+    {
+      "titre": "Mobilisation générale : l’Algérie prépare un scénario de crise totale",
+      "source": "TSA",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "défense",
+      "resume": "Un projet de loi explosif autorise l’État à activer la mobilisation générale. Quels moyens ? Quels objectifs ? Qui est visé ?",
+      "url": "https://www.tsa-algerie.com/mobilisation-generale-en-algerie-ce-que-prevoit-le-projet-de-loi",
+      "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be"
+    },
+    {
+      "titre": "Le Quotidien d’Oran révèle les dessous d’une stratégie militaire discrète",
+      "source": "Le Quotidien d’Oran",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "défense",
+      "resume": "Le général Chanegriha appelle à la vigilance. L’armée algérienne affine ses lignes dans un climat de tension.",
+      "url": "https://www.lequotidien-oran.com/?news=5337783",
+      "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be"
+    },
+    {
+      "titre": "Attaques contre l’Algérie : un ex-ministre appelle à bâtir un \"bouclier médiatique\"",
+      "source": "El Watan",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "guerre médiatique",
+      "resume": "Alors que les critiques étrangères s’intensifient, Meziane appelle à une riposte médiatique organisée.",
+      "url": "https://elwatan-dz.com/face-aux-campagnes-contre-lalgerie-meziane-incite-a-un-bouclier-mediatique",
+      "image": "https://images.unsplash.com/photo-1581090700227-1e8a1d1b6b9b"
+    },
+    {
+      "titre": "Kaylia Nemour frappe encore : 2e médaille d’or au Caire !",
+      "source": "APS",
+      "date": "2025-04-29",
+      "a_la_une": false,
+      "categorie": "sport",
+      "resume": "La gymnaste algérienne remporte sa deuxième médaille d'or à la Coupe du monde 2025.",
+      "url": "https://www.aps.dz/sport/185908-gymnastique-coupe-du-monde-2025-2e-medaille-d-or-pour-kaylia-nemour-au-caire",
+      "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be"
+    },
+    {
+      "titre": "La poudrière atomique",
+      "source": "El Moudjahid",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "international",
+      "resume": "Un éditorial tendu sur les risques nucléaires mondiaux et la posture géopolitique de l’Algérie.",
+      "url": "https://www.elmoudjahid.dz/fr/editorials/la-poudriere-atomique-3774",
+      "image": "https://images.unsplash.com/photo-1581090700227-1e8a1d1b6b9b"
+    },
+    {
+      "titre": "L’économie algérienne face aux vents contraires : vers une stabilité fragile ?",
+      "source": "Radio Algérie",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "économie",
+      "resume": "Entre inflation maîtrisée et croissance lente, les signaux sont brouillés.",
+      "url": "https://news.radioalgerie.dz/ar/node/63882",
+      "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be"
+    },
+    {
+      "titre": "Projets locaux, ambitions nationales : le développement économique en action",
+      "source": "Horizons",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "développement économique",
+      "resume": "Zones industrielles, infrastructures : l’Algérie investit dans son socle territorial.",
+      "url": "https://www.horizons.dz/?p=269897",
+      "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be"
+    },
+    {
+      "titre": "Disparu en 1958 : elles veulent la vérité",
+      "source": "France Bleu",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "mémoire",
+      "resume": "Des sœurs réclament des réponses sur la disparition de leur frère pendant la guerre d’Algérie.",
+      "url": "https://www.francebleu.fr/infos/societe/video-il-est-passe-ou-par-quelle-torture-leur-frere-soldat-a-disparu-en-algerie-en-1958-elles-veulent-la-verite-6389453",
+      "image": "https://images.unsplash.com/photo-1581090700227-1e8a1d1b6b9b"
+    },
+    {
+      "titre": "Algérie–Maroc : le duel budgétaire qui inquiète l’Afrique du Nord",
+      "source": "Bladi.net",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "géopolitique",
+      "resume": "Comparatif tendu des dépenses militaires entre Rabat et Alger.",
+      "url": "https://www.bladi.net/maroc-algerie-affrontent-terrain-budgets-militaires,114487.html",
+      "image": "https://images.unsplash.com/photo-1570129477492-45c003edd2be"
+    },
+    {
+      "titre": "Quand l’extrême droite française invoque Boualem Sansal contre Macron",
+      "source": "Résistance Républicaine",
+      "date": "2025-04-30",
+      "a_la_une": false,
+      "categorie": "politique",
+      "resume": "Récupération polémique de la figure de l’écrivain algérien dans une attaque contre le président français.",
+      "url": "https://resistancerepublicaine.com/2025/04/30/si-macron-netait-pas-un-froussard-et-un-lache-boualem-sansal-serait-avec-nous/",
+      "image": "https://images.unsplash.com/photo-1581090700227-1e8a1d1b6b9b"
+    }
+  ]
+}
